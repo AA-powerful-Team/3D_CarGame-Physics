@@ -129,11 +129,31 @@ void PhysVehicle3D::Brake(float force)
 	{
 		if(info.wheels[i].brake == true)
 		{
-			vehicle->setBrake(force, i);
+			
+			if(info.wheels[i].frontWheel==true)
+			vehicle->setBrake(force*0.75, i);
+			else
+			vehicle->setBrake(force*0.25, i);
+
+
 		}
 	}
 }
 
+void PhysVehicle3D::Skid(float force) {
+
+	for (int i = 0; i < vehicle->getNumWheels(); ++i)
+	{
+		if (info.wheels[i].SkidWheel == true)
+		{
+
+				vehicle->setBrake(force,i);
+			
+		}
+	}
+
+
+}
 // ----------------------------------------------------------------------------
 void PhysVehicle3D::Turn(float degrees)
 {

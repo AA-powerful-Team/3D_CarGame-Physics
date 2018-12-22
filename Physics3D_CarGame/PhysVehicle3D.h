@@ -21,6 +21,7 @@ struct Wheel
 	bool brake; // does breakes affect this wheel ?
 	bool steering; // does this wheel turns ?
 	bool frontWheel;
+	bool SkidWheel;
 
 
 };
@@ -69,8 +70,10 @@ public:
 	void Render();
 	void ApplyEngineForce(float force);
 	void Brake(float force);
+	void Skid(float force);
 	void Turn(float degrees);
 	float GetKmh() const;
+
 
 	vec3 GetVehiclePos();
 	vec3 GetDirectionVec();
