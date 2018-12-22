@@ -170,7 +170,7 @@ update_status ModulePlayer::Update(float dt)
 
 	App->camera->LookAt(vehicle->GetVehiclePos());
 
-	App->camera->Position=vehicle->GetVehiclePos()+vec3(0,3,-10);
+	App->camera->Position=(vehicle->GetVehiclePos()-vehicle->GetDirectionVec()*12 +vec3(0,6,0));
 
 	return UPDATE_CONTINUE;
 }

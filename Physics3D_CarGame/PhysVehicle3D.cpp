@@ -171,10 +171,13 @@ vec3 PhysVehicle3D::GetVehiclePos() {
 }
 vec3 PhysVehicle3D::GetDirectionVec() {
 	
+	vec3 ForwardVec;
+	btVector3 vec = vehicle->getForwardVector();
 
 
+	ForwardVec.x = vec.getX();
+	ForwardVec.y = vec.getY();
+	ForwardVec.z = vec.getZ();
 
-
-
-
+	return ForwardVec;
 }
