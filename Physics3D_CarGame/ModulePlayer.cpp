@@ -46,7 +46,7 @@ bool ModulePlayer::Start()
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
-	car.frictionSlip = 50.5;
+	car.frictionSlip = 1000.0f;
 	car.maxSuspensionForce = 6000.0f;
 
 	// Wheel properties ---------------------------------------
@@ -75,10 +75,10 @@ bool ModulePlayer::Start()
 	car.wheels[0].radius = wheel_radius;
 	car.wheels[0].width = wheel_width;
 	car.wheels[0].front = true;
-	car.wheels[0].drive = true;
+	car.wheels[0].drive = false;
 	car.wheels[0].brake = false;
 	car.wheels[0].steering = true;
-
+	car.wheels[0].frontWheel=true;
 	// FRONT-RIGHT ------------------------
 	car.wheels[1].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length - wheel_radius);
 	car.wheels[1].direction = direction;
@@ -87,10 +87,10 @@ bool ModulePlayer::Start()
 	car.wheels[1].radius = wheel_radius;
 	car.wheels[1].width = wheel_width;
 	car.wheels[1].front = true;
-	car.wheels[1].drive = true;
+	car.wheels[1].drive =false;
 	car.wheels[1].brake = false;
 	car.wheels[1].steering = true;
-
+	car.wheels[1].frontWheel = true;
 	// REAR-LEFT ------------------------
 	car.wheels[2].connection.Set(half_width - 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
 	car.wheels[2].direction = direction;
@@ -99,9 +99,10 @@ bool ModulePlayer::Start()
 	car.wheels[2].radius = wheel_radius;
 	car.wheels[2].width = wheel_width;
 	car.wheels[2].front = false;
-	car.wheels[2].drive = false;
+	car.wheels[2].drive = true;
 	car.wheels[2].brake = true;
 	car.wheels[2].steering = false;
+	car.wheels[2].frontWheel = false;
 
 	// REAR-RIGHT ------------------------
 	car.wheels[3].connection.Set(-half_width + 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
@@ -111,9 +112,11 @@ bool ModulePlayer::Start()
 	car.wheels[3].radius = wheel_radius;
 	car.wheels[3].width = wheel_width;
 	car.wheels[3].front = false;
-	car.wheels[3].drive = false;
+	car.wheels[3].drive = true;
 	car.wheels[3].brake = true;
 	car.wheels[3].steering = false;
+	car.wheels[3].frontWheel = false;
+
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 12, 10);
@@ -166,32 +169,31 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
-	CurrentVelocity = vehicle->GetKmh();
+	
 
 	App->camera->LookAt(vehicle->GetVehiclePos());
 	
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_IDLE)
 	{
-		
-		if (CurrentVelocity < 100){
 
-			if (CameraZoom > 12) {
-				CameraZoom -= cameraAcceleration;
-			}
+
+		if (CurrentVelocity > vehicle->GetKmh()) {
+			if(CameraZoom>10)
+			CameraZoom -= cameraAcceleration;
 
 			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 		}
-		else if (CurrentVelocity > 100 ) {
+		else if (CurrentVelocity < vehicle->GetKmh()) {
+			if (vehicle->GetKmh()>50 && CameraZoom < 20)
+			CameraZoom += cameraAcceleration;
 
-			
-			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
-			if (CameraZoom < 20) {
-				CameraZoom += cameraAcceleration;
-			}
+				App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 
 		}
-	
-	
+		else {
+			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+		}
+
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT) {
 
@@ -199,6 +201,8 @@ update_status ModulePlayer::Update(float dt)
 		App->camera->Position = (vehicle->GetVehiclePos() + vehicle->GetDirectionVec() * 12 + vec3(0, 6, 0));
 
 	}
+
+	CurrentVelocity = vehicle->GetKmh();
 
 	return UPDATE_CONTINUE;
 }

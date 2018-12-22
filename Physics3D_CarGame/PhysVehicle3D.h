@@ -6,6 +6,8 @@
 class btRaycastVehicle;
 struct PhysBody3D;
 
+
+
 struct Wheel
 {
 	vec3 connection; // origin of the ray. Must come from within the chassis
@@ -18,6 +20,9 @@ struct Wheel
 	bool drive; // does this wheel received engine power ?
 	bool brake; // does breakes affect this wheel ?
 	bool steering; // does this wheel turns ?
+	bool frontWheel;
+
+
 };
 
 struct VehicleInfo
