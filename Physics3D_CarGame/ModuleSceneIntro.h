@@ -3,6 +3,11 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "Globals.h"
+#include "Application.h"
+#include "ModulePlayer.h"
+#include "PhysVehicle3D.h"
+#include "PhysBody3D.h"
 
 #define MAX_SNAKE 2
 
@@ -20,6 +25,13 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+
+	void CreatePath(int posx, int posy, int posz,int angle, vec3 rotation);
+	void CreatePathWall(int posx, int posy, int posz, int angle, vec3 rotation);
+	void CreateRoad(int posx, int posy, int posz, int angle, vec3 rotation);
+	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback);
+	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
+
 
 public:
 	/*
@@ -41,4 +53,14 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	// lis for clean up
+
+	p2List<PhysBody3D*> cubePhysList;
+	p2List<Cube*> cubeList;
+
+	//sizes
+
+	vec3 roadBorder = (100, 80, 1);
+	vec3 roadSize = (200, 1, 1);
 };
