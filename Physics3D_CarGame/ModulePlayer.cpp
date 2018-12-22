@@ -166,11 +166,39 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
 
-	
+	CurrentVelocity = vehicle->GetKmh();
 
 	App->camera->LookAt(vehicle->GetVehiclePos());
+	
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_IDLE)
+	{
+		
+		if (CurrentVelocity < 100){
 
-	App->camera->Position=(vehicle->GetVehiclePos()-vehicle->GetDirectionVec()*12 +vec3(0,6,0));
+			if (CameraZoom > 12) {
+				CameraZoom -= cameraAcceleration;
+			}
+
+			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+		}
+		else if (CurrentVelocity > 100 ) {
+
+			
+			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+			if (CameraZoom < 20) {
+				CameraZoom += cameraAcceleration;
+			}
+
+		}
+	
+	
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT) {
+
+	
+		App->camera->Position = (vehicle->GetVehiclePos() + vehicle->GetDirectionVec() * 12 + vec3(0, 6, 0));
+
+	}
 
 	return UPDATE_CONTINUE;
 }

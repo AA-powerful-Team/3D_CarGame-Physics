@@ -25,4 +25,7 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+	float CameraZoom=12.00;
+	float cameraAcceleration = 0.02;
+	float CurrentVelocity;
 };
