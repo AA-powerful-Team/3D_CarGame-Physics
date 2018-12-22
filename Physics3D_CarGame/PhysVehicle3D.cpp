@@ -151,3 +151,30 @@ float PhysVehicle3D::GetKmh() const
 {
 	return vehicle->getCurrentSpeedKmHour();
 }
+vec3 PhysVehicle3D::GetVehiclePos() {
+
+	vec3 pos;
+
+
+	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
+	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
+	/*btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
+	offset = offset.rotate(q.getAxis(), q.getAngle());*/
+
+	pos.x=chassis.transform.M[12];
+	pos.y=chassis.transform.M[13];
+	pos.z=chassis.transform.M[14];
+
+	return pos;
+
+}
+vec3 PhysVehicle3D::GetDirectionVec() {
+	
+
+
+
+
+
+
+}

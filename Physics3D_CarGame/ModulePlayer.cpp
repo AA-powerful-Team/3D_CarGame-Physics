@@ -5,6 +5,7 @@
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
 
+
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
 {
 	turn = acceleration = brake = 0.0f;
@@ -164,6 +165,12 @@ update_status ModulePlayer::Update(float dt)
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
 	App->window->SetTitle(title);
+
+	
+
+	App->camera->LookAt(vehicle->GetVehiclePos());
+
+	App->camera->Position=vehicle->GetVehiclePos()+vec3(0,3,-10);
 
 	return UPDATE_CONTINUE;
 }
