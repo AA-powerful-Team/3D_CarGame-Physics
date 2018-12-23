@@ -78,6 +78,8 @@ public:
 	vec3 GetVehiclePos();
 	vec3 GetDirectionVec();
 
+	bool overturned();
+
 public:
 
 	VehicleInfo info;

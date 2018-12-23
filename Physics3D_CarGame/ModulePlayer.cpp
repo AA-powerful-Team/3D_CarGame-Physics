@@ -210,6 +210,16 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 	
+	if (vehicle->overturned() == true) {
+
+
+
+		vehicle->SetPos(0, 12, 10);
+
+	}
+
+		
+
 
 	vehicle->Render();
 

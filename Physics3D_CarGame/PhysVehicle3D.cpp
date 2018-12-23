@@ -201,3 +201,29 @@ vec3 PhysVehicle3D::GetDirectionVec() {
 
 	return ForwardVec;
 }
+
+bool PhysVehicle3D::overturned() {
+
+	bool ret;
+	vec3 AUX;
+	btVector3 vec = vehicle->getUpVector();
+	
+	AUX.x = vec.getX();
+	AUX.y = vec.getY();
+	AUX.z = vec.getZ();
+
+
+
+	if (AUX.y< 0) {
+		ret = true;
+
+	}
+	else {
+
+		ret = false;
+
+	}
+
+
+	return ret;
+}
