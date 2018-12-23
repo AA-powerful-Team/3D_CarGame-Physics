@@ -123,7 +123,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 12, 10);
+	vehicle->SetPos(-200, 2, -170);
 
 
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");

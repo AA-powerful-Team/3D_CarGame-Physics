@@ -68,7 +68,7 @@ bool ModuleSceneIntro::Start()
 	CreateCorner(-200, 0, -170, 4);
 
 	CreateRamp(-143,9, -170, 1);
-	CreateRamp(-43,49 , -170, 1);
+	CreateRamp(-149,49 , -170, 1);
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
 
