@@ -22,6 +22,9 @@ public:
 
 public:
 
+
+	bool constantVelocity;
+
 	PhysVehicle3D* vehicle;
 	float turn;
 	float acceleration;
@@ -34,5 +37,12 @@ public:
 
 
 	uint RevEngineSound;
+	uint StartingEngine;
+	uint EngineLoop;
+	uint constantSpeedEngine;
+	uint AcceleratingEngine;
 
+	Timer EngineSoundLoopTimer;
+	Timer EngineConstantSpeedTimer;
+	Timer EngineAcceleratingSoundTimer;
 };

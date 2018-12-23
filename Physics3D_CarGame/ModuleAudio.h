@@ -23,7 +23,9 @@ public:
 	unsigned int LoadFx(const char* path);
 
 	// Play a previously loaded WAV
-	bool PlayFx(unsigned int fx, int repeat = 0);
+	bool PlayFx(unsigned int fx, int repeat = 0,int channel=-1);
+
+	void StopChannel(int channel,int ms);
 
 private:
 

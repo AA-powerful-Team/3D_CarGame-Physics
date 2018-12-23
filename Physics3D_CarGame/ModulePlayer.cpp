@@ -4,6 +4,7 @@
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include "Timer.h"
 
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
@@ -126,7 +127,12 @@ bool ModulePlayer::Start()
 
 
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");
+	StartingEngine = App->audio->LoadFx("FX/StartingEngine.wav");
+	EngineLoop = App->audio->LoadFx("FX/EngineLoop.wav");
+	constantSpeedEngine = App->audio->LoadFx("FX/ConstantSpeed.wav");
+	AcceleratingEngine = App->audio->LoadFx("FX/Accelerating.wav");
 
+	App->audio->PlayFx(StartingEngine);
 	
 	return true;
 }
@@ -135,6 +141,8 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
+	
+
 
 	return true;
 }
@@ -145,10 +153,11 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 
 
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh()<2) {
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh()<5) {
 
 
-		//App->audio->PlayFx(RevEngineSound);
+		App->audio->PlayFx(RevEngineSound);
 
 	}
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -190,6 +199,46 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 
+	//playing Sound Conditions
+	
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && 
+		App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_IDLE && 
+		vehicle->GetKmh()<10){
+	
+		if (EngineSoundLoopTimer.Read()>=1000) {
+			App->audio->PlayFx(EngineLoop);
+			EngineSoundLoopTimer.Start();
+		}
+
+
+	}
+
+	if (vehicle->GetKmh() >10) {
+
+		if (EngineConstantSpeedTimer.Read() >= 4000) {
+			App->audio->PlayFx(constantSpeedEngine,0, 3);
+			EngineConstantSpeedTimer.Start();
+		}
+	}
+	else if (vehicle->GetKmh()<=10) {
+
+		App->audio->StopChannel(3,500);
+
+	}
+	if (constantVelocity == false && vehicle->GetKmh()>75) {
+
+	/*	if (EngineAcceleratingSoundTimer.Read()>=1000) {
+			App->audio->PlayFx(AcceleratingEngine,1,2);
+			EngineAcceleratingSoundTimer.Start();
+		}*/
+	}
+	else if (constantVelocity == true){
+
+		App->audio->StopChannel(2,500);
+
+	}
+
+
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
@@ -204,26 +253,29 @@ update_status ModulePlayer::Update(float dt)
 	App->camera->LookAt(vehicle->GetVehiclePos());
 
 
-
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_IDLE)
 	{
 
 
 		if (CurrentVelocity > vehicle->GetKmh()) {
+			
 			if(CameraZoom>10)
 			CameraZoom -= cameraAcceleration;
 
 			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 		}
 		else if (CurrentVelocity < vehicle->GetKmh()) {
+			
+			
 			if (vehicle->GetKmh()>50 && CameraZoom < 20)
 			CameraZoom += cameraAcceleration;
 
 				App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 
+				
 		}
 		else if (CurrentVelocity == vehicle->GetKmh()) {
-
+			
 			if (CurrentVelocity < 2.00 && CameraZoom > 10) {
 
 				CameraZoom -=0.5;
@@ -233,7 +285,7 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT) {
-
+	
 	
 		App->camera->Position = (vehicle->GetVehiclePos() + vehicle->GetDirectionVec() * 12 + vec3(0, 6, 0));
 
