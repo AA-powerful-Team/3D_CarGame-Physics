@@ -20,7 +20,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	CreateRoad(38, 0, -190, 90, vec3(0, 1, 0));
+	/*CreateRoad(38, 0, -190, 90, vec3(0, 1, 0));
 	CreateRoad(38, 0, -90, 90, vec3(0, 1, 0));
 	CreateRoad(38, 0, 10, 90, vec3(0, 1, 0));
 
@@ -34,7 +34,7 @@ bool ModuleSceneIntro::Start()
 
 	CreateRoad(100, 0, -250, 0, vec3(1, 0, 0));
 	CreateRoad(200, 0, -250, 0, vec3(1, 0, 0));
-	CreateRoad(300, 0, -250, 0, vec3(0, 1, 0));
+	CreateRoad(300, 0, -250, 0, vec3(0, 1, 0));*/
 
 	//CreateCorner(0,0,0,1);
 
@@ -44,12 +44,31 @@ bool ModuleSceneIntro::Start()
 
 	//CreateCorner(-30, 0, +30, 3);
 
-	CreateRamp(0, 0, 60, 1);
+	/*CreateRamp(0, 0, 60, 1);
 
-	CreateRamp(0, 0, 90, 2);
+	CreateRamp(0, 0, 90, 2);*/
 
+	CreateCorner(420,0,-370,1);
+	CreateRoad(420, 0, -310, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -210, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -110, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -10, 90, vec3(0, 1, 0));
+	CreateCorner(420,0,50,2);
 
-	
+	CreateRoad(360, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(260, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(160, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(60, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(-40, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(-140, 0, 50, 0, vec3(0, 1, 0));
+	CreateCorner(-200, 0, 50, 3);
+
+	CreateRoad(-200, 0, -10, 90, vec3(0, 1, 0));
+	CreateRoad(-200, 0, -110, 90, vec3(0, 1, 0));
+	CreateCorner(-200, 0, -170, 4);
+
+	CreateRamp(-143,9, -170, 1);
+	CreateRamp(-43,49 , -170, 1);
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
 
@@ -104,7 +123,7 @@ void ModuleSceneIntro::CreatePathWall(int posx, int posy, int posz, int angle, v
 	}
 	else if (type == 2)
 	{
-		Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(30, 3, 1), DarkGrey, angle, rotation);
+		Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(20, 3, 1), DarkGrey, angle, rotation);
 		cubePhysList.add(CreateCubePhysbody(cube, this));
 		cubeList.add(cube);
 	}
@@ -150,7 +169,7 @@ PhysBody3D* ModuleSceneIntro::CreateCubePhysbody(Cube* cube, Module* Callback) {
 
 void ModuleSceneIntro::CreateCornerFloor(int posx, int posy, int posz)
 {
-	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(30, 1, 30), Grey, 0, vec3(1,0,0));
+	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(20, 1, 20), Grey, 0, vec3(1,0,0));
 	cubePhysList.add(CreateCubePhysbody(cube, this));
 	cubeList.add(cube);
 }
@@ -161,24 +180,24 @@ void ModuleSceneIntro::CreateCorner(int posx, int posy, int posz, int side)
 
 	if (side == 1)
 	{
-		CreatePathWall(posx, posy + 2, posz-15, 0, vec3(1,0,0),2); //back
-		CreatePathWall(posx+15, posy + 2, posz, 90, vec3(0, 1, 0),2); //left
+		CreatePathWall(posx, posy + 2, posz-10, 0, vec3(1,0,0),2); //back
+		CreatePathWall(posx+10, posy + 2, posz, 90, vec3(0, 1, 0),2); //left
 	}
 	else if (side == 2)
 	{
 		
-		CreatePathWall(posx + 15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
-		CreatePathWall(posx, posy + 2, posz + 15, 0, vec3(1, 0, 0), 2); //back
+		CreatePathWall(posx + 10, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
+		CreatePathWall(posx, posy + 2, posz + 10, 0, vec3(1, 0, 0), 2); //back
 	}
 	else if (side == 3)
 	{
-		CreatePathWall(posx, posy + 2, posz + 15, 0, vec3(1, 0, 0), 2); //front
-		CreatePathWall(posx-15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
+		CreatePathWall(posx, posy + 2, posz + 10, 0, vec3(1, 0, 0), 2); //front
+		CreatePathWall(posx-10, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
 	}
 	else if (side == 4)
 	{
-		CreatePathWall(posx, posy + 2, posz - 15, 0, vec3(1, 0, 0), 2); //back
-		CreatePathWall(posx - 15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //left
+		CreatePathWall(posx, posy + 2, posz - 10, 0, vec3(1, 0, 0), 2); //back
+		CreatePathWall(posx - 10, posy + 2, posz, 90, vec3(0, 1, 0), 2); //left
 	}
 
 	CreateCornerFloor(posx, posy, posz);
@@ -190,13 +209,13 @@ void ModuleSceneIntro::CreateRamp(int posx, int posy, int posz, int upordown)
 {
 	if (upordown == 1)
 	{
-		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(50, 1, 20), Grey, 20, vec3(0, 0, 1));
+		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(100, 1, 20), Grey, 20, vec3(0, 0, 1));
 		cubePhysList.add(CreateCubePhysbody(cube, this));
 		cubeList.add(cube);
 	}
 	else if (upordown == 2)
 	{
-		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(50, 1, 20), Grey, -20, vec3(0, 0, 1));
+		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(100, 1, 20), Grey, -20, vec3(0, 0, 1));
 		cubePhysList.add(CreateCubePhysbody(cube, this));
 		cubeList.add(cube);
 	}
