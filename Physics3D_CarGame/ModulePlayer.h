@@ -51,4 +51,6 @@ public:
 	Timer EngineSoundLoopTimer;
 	Timer EngineConstantSpeedTimer;
 	Timer EngineAcceleratingSoundTimer;
+
+	mat4x4 matrix;
 };

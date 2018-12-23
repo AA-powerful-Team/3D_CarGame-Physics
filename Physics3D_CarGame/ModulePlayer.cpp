@@ -125,7 +125,9 @@ bool ModulePlayer::Start()
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(100, 2, -180); //start point
 	//vehicle->SetPos(420, 2, -350);
-
+	vehicle->GetTransform(&matrix);
+	matrix.rotate(180, vec3(0, 1, 0));
+	vehicle->SetTransform(&matrix);
 
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");
 	StartingEngine = App->audio->LoadFx("FX/StartingEngine.wav");
