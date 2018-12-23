@@ -27,8 +27,12 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 	void CreatePath(int posx, int posy, int posz,int angle, vec3 rotation);
-	void CreatePathWall(int posx, int posy, int posz, int angle, vec3 rotation);
+	void CreatePathWall(int posx, int posy, int posz, int angle, vec3 rotation,int type);
 	void CreateRoad(int posx, int posy, int posz, int angle, vec3 rotation);
+	void CreateCornerFloor(int posx, int posy, int posz);
+	void CreateCorner(int posx, int posy, int posz, int side);
+
+	
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 

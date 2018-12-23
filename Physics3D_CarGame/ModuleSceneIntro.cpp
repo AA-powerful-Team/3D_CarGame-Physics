@@ -19,18 +19,31 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+
 	CreateRoad(38, 0, -190, 90, vec3(0, 1, 0));
 	CreateRoad(38, 0, -90, 90, vec3(0, 1, 0));
 	CreateRoad(38, 0, 10, 90, vec3(0, 1, 0));
+
 	CreateRoad(100, 0, 70, 0, vec3(1, 0, 0));
 	CreateRoad(200, 0, 70, 0, vec3(1, 0, 0));
 	CreateRoad(300, 0, 70, 0,vec3(0,1,0));
+
 	CreateRoad(360, 0, 10, 90, vec3(0, 1, 0));
 	CreateRoad(360, 0, -90, 90, vec3(0, 1, 0));
 	CreateRoad(360, 0, -190, 90, vec3(0, 1, 0));
+
 	CreateRoad(100, 0, -250, 0, vec3(1, 0, 0));
 	CreateRoad(200, 0, -250, 0, vec3(1, 0, 0));
 	CreateRoad(300, 0, -250, 0, vec3(0, 1, 0));
+
+	CreateCorner(0,0,0,1);
+
+	CreateCorner(0, 0, +30, 2);
+
+	CreateCorner(-30, 0, 0, 4);
+
+	CreateCorner(-30, 0, +30, 3);
+
 	return ret;
 }
 
@@ -72,11 +85,22 @@ void ModuleSceneIntro::CreatePath(int posx, int posy, int posz, int angle,vec3 r
 	cubeList.add(cube);
 }
 
-void ModuleSceneIntro::CreatePathWall(int posx, int posy, int posz, int angle, vec3 rotation)
+void ModuleSceneIntro::CreatePathWall(int posx, int posy, int posz, int angle, vec3 rotation, int type)
 {
-	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(100, 3, 1), DarkGrey, angle, rotation);
-	cubePhysList.add(CreateCubePhysbody(cube, this));
-	cubeList.add(cube);
+	if (type == 1)
+	{
+		Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(100, 3, 1), DarkGrey, angle, rotation);
+		cubePhysList.add(CreateCubePhysbody(cube, this));
+		cubeList.add(cube);
+	}
+	else if (type == 2)
+	{
+		Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(30, 3, 1), DarkGrey, angle, rotation);
+		cubePhysList.add(CreateCubePhysbody(cube, this));
+		cubeList.add(cube);
+	}
+	
+	
 }
 
 void ModuleSceneIntro::CreateRoad(int posx, int posy, int posz, int angle,vec3 rotation )
@@ -84,13 +108,13 @@ void ModuleSceneIntro::CreateRoad(int posx, int posy, int posz, int angle,vec3 r
 	CreatePath(posx, posy, posz, angle, rotation);
 	if (angle != 0)
 	{
-		CreatePathWall(posx+10, posy + 2, posz, angle, vec3(rotation.x, rotation.y, rotation.z));
-		CreatePathWall(posx-10, posy, posz, angle, rotation);
+		CreatePathWall(posx+10, posy + 2, posz, angle, vec3(rotation.x, rotation.y, rotation.z),1);
+		CreatePathWall(posx-10, posy, posz, angle, rotation,1);
 	}
 	else
 	{
-		CreatePathWall(posx, posy + 2, posz + 10, angle, vec3(rotation.x, rotation.y, rotation.z));
-		CreatePathWall(posx, posy, posz - 10, angle, rotation);
+		CreatePathWall(posx, posy + 2, posz + 10, angle, vec3(rotation.x, rotation.y, rotation.z),1);
+		CreatePathWall(posx, posy, posz - 10, angle, rotation,1);
 	}
 	
 }
@@ -115,3 +139,39 @@ PhysBody3D* ModuleSceneIntro::CreateCubePhysbody(Cube* cube, Module* Callback) {
 	return cubeP;
 }
 
+void ModuleSceneIntro::CreateCornerFloor(int posx, int posy, int posz)
+{
+	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(30, 1, 30), Grey, 0, vec3(1,0,0));
+	cubePhysList.add(CreateCubePhysbody(cube, this));
+	cubeList.add(cube);
+}
+
+
+void ModuleSceneIntro::CreateCorner(int posx, int posy, int posz, int side)
+{
+
+	if (side == 1)
+	{
+		CreatePathWall(posx, posy + 2, posz-15, 0, vec3(1,0,0),2); //back
+		CreatePathWall(posx+15, posy + 2, posz, 90, vec3(0, 1, 0),2); //left
+	}
+	else if (side == 2)
+	{
+		
+		CreatePathWall(posx + 15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
+		CreatePathWall(posx, posy + 2, posz + 15, 0, vec3(1, 0, 0), 2); //back
+	}
+	else if (side == 3)
+	{
+		CreatePathWall(posx, posy + 2, posz + 15, 0, vec3(1, 0, 0), 2); //front
+		CreatePathWall(posx-15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //right
+	}
+	else if (side == 4)
+	{
+		CreatePathWall(posx, posy + 2, posz - 15, 0, vec3(1, 0, 0), 2); //back
+		CreatePathWall(posx - 15, posy + 2, posz, 90, vec3(0, 1, 0), 2); //left
+	}
+
+	CreateCornerFloor(posx, posy, posz);
+	
+}

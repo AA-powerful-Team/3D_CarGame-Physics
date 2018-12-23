@@ -148,7 +148,7 @@ update_status ModulePlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh()<2) {
 
 
-		App->audio->PlayFx(RevEngineSound);
+		//App->audio->PlayFx(RevEngineSound);
 
 	}
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
