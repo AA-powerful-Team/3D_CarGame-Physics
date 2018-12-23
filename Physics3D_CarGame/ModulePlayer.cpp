@@ -131,6 +131,7 @@ bool ModulePlayer::Start()
 	EngineLoop = App->audio->LoadFx("FX/EngineLoop.wav");
 	constantSpeedEngine = App->audio->LoadFx("FX/ConstantSpeed.wav");
 	AcceleratingEngine = App->audio->LoadFx("FX/Accelerating.wav");
+	BrakingSound = App->audio->LoadFx("FX/Braking.wav");
 
 	App->audio->PlayFx(StartingEngine);
 	
@@ -163,6 +164,13 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
 		acceleration = MAX_ACCELERATION;
+
+		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>50) {
+			App->audio->PlayFx(AcceleratingEngine, 0, 4);
+			EngineAcceleratingSoundTimer.Start();
+
+		}
+
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
@@ -187,7 +195,7 @@ update_status ModulePlayer::Update(float dt)
 
 
 		brake = BRAKE_POWER;
-
+		
 
 	}
 
@@ -201,6 +209,33 @@ update_status ModulePlayer::Update(float dt)
 
 	//playing Sound Conditions
 	
+
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_UP ) {
+
+
+		App->audio->StopChannel(1,300);
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && vehicle->GetKmh()>50) {
+
+
+		App->audio->PlayFx(BrakingSound,0,1);
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_UP) {
+
+
+
+		App->audio->StopChannel(4, 500);
+		EngineAcceleratingSoundTimer.Start();
+
+
+	}
+
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && 
 		App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_IDLE && 
 		vehicle->GetKmh()<10){
@@ -209,7 +244,6 @@ update_status ModulePlayer::Update(float dt)
 			App->audio->PlayFx(EngineLoop);
 			EngineSoundLoopTimer.Start();
 		}
-
 
 	}
 
@@ -225,18 +259,8 @@ update_status ModulePlayer::Update(float dt)
 		App->audio->StopChannel(3,500);
 
 	}
-	if (constantVelocity == false && vehicle->GetKmh()>75) {
+	
 
-	/*	if (EngineAcceleratingSoundTimer.Read()>=1000) {
-			App->audio->PlayFx(AcceleratingEngine,1,2);
-			EngineAcceleratingSoundTimer.Start();
-		}*/
-	}
-	else if (constantVelocity == true){
-
-		App->audio->StopChannel(2,500);
-
-	}
 
 
 	vehicle->ApplyEngineForce(acceleration);
