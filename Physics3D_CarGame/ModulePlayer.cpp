@@ -165,7 +165,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		acceleration = MAX_ACCELERATION;
 
-		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>50) {
+		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>150) {
 			App->audio->PlayFx(AcceleratingEngine, 0, 4);
 			EngineAcceleratingSoundTimer.Start();
 
@@ -236,9 +236,7 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && 
-		App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_IDLE && 
-		vehicle->GetKmh()<10){
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && vehicle->GetKmh()<10){
 	
 		if (EngineSoundLoopTimer.Read()>=1000) {
 			App->audio->PlayFx(EngineLoop);
