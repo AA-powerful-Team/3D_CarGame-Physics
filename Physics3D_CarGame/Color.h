@@ -32,3 +32,7 @@ extern Color Black;
 extern Color White;
 extern Color Grey;
 extern Color DarkGrey;
+extern Color Yellow;
+extern Color LightBlue;
+extern Color OtherGrey;
+extern Color GreyBuilding;

@@ -49,7 +49,7 @@ bool ModulePlayer::Start()
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 1000.0f;
 	car.maxSuspensionForce = 6000.0f;
-
+	
 	// Wheel properties ---------------------------------------
 
 	float connection_height = 1.2f;
@@ -123,7 +123,8 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(260, 2, -370);
+	vehicle->SetPos(100, 2, -180); //start point
+	//vehicle->SetPos(420, 2, -350);
 
 
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");
