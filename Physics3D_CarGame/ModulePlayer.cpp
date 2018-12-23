@@ -165,7 +165,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 		acceleration = MAX_ACCELERATION;
 
-		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>150) {
+		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>100) {
 			App->audio->PlayFx(AcceleratingEngine, 0, 4);
 			EngineAcceleratingSoundTimer.Start();
 

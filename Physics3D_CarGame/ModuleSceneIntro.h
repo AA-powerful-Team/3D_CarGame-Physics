@@ -68,4 +68,8 @@ public:
 
 	vec3 roadBorder = (100, 80, 1);
 	vec3 roadSize = (200, 1, 1);
+
+
+	//music
+	uint StageMusic;
 };

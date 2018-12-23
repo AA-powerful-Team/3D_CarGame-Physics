@@ -42,6 +42,7 @@ public:
 	uint constantSpeedEngine;
 	uint AcceleratingEngine;
 	uint BrakingSound;
+	
 
 	Timer EngineSoundLoopTimer;
 	Timer EngineConstantSpeedTimer;

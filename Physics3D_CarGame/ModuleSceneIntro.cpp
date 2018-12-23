@@ -48,6 +48,11 @@ bool ModuleSceneIntro::Start()
 
 	CreateRamp(0, 0, 90, 2);
 
+
+	
+
+	App->audio->PlayMusic("FX/StageMusic.wav");
+
 	return ret;
 }
 
