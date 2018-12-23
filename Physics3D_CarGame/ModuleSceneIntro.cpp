@@ -36,13 +36,17 @@ bool ModuleSceneIntro::Start()
 	CreateRoad(200, 0, -250, 0, vec3(1, 0, 0));
 	CreateRoad(300, 0, -250, 0, vec3(0, 1, 0));
 
-	CreateCorner(0,0,0,1);
+	//CreateCorner(0,0,0,1);
 
-	CreateCorner(0, 0, +30, 2);
+	//CreateCorner(0, 0, +30, 2);
 
-	CreateCorner(-30, 0, 0, 4);
+	//CreateCorner(-30, 0, 0, 4);
 
-	CreateCorner(-30, 0, +30, 3);
+	//CreateCorner(-30, 0, +30, 3);
+
+	CreateRamp(0, 0, 60, 1);
+
+	CreateRamp(0, 0, 90, 2);
 
 	return ret;
 }
@@ -173,5 +177,23 @@ void ModuleSceneIntro::CreateCorner(int posx, int posy, int posz, int side)
 	}
 
 	CreateCornerFloor(posx, posy, posz);
+	
+}
+
+
+void ModuleSceneIntro::CreateRamp(int posx, int posy, int posz, int upordown)
+{
+	if (upordown == 1)
+	{
+		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(50, 1, 20), Grey, 20, vec3(0, 0, 1));
+		cubePhysList.add(CreateCubePhysbody(cube, this));
+		cubeList.add(cube);
+	}
+	else if (upordown == 2)
+	{
+		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(50, 1, 20), Grey, -20, vec3(0, 0, 1));
+		cubePhysList.add(CreateCubePhysbody(cube, this));
+		cubeList.add(cube);
+	}
 	
 }
