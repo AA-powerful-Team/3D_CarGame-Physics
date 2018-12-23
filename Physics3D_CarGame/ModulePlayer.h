@@ -20,6 +20,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void MusicConditions();
+
 public:
 
 
@@ -42,6 +44,8 @@ public:
 	uint constantSpeedEngine;
 	uint AcceleratingEngine;
 	uint BrakingSound;
+	uint Turning;
+	uint TireSkid;
 	
 
 	Timer EngineSoundLoopTimer;

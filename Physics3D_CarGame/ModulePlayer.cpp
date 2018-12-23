@@ -132,6 +132,8 @@ bool ModulePlayer::Start()
 	constantSpeedEngine = App->audio->LoadFx("FX/ConstantSpeed.wav");
 	AcceleratingEngine = App->audio->LoadFx("FX/Accelerating.wav");
 	BrakingSound = App->audio->LoadFx("FX/Braking.wav");
+	Turning = App->audio->LoadFx("FX/turning.wav");
+	TireSkid = App->audio->LoadFx("FX/tireSkid.wav");
 
 	App->audio->PlayFx(StartingEngine);
 	
@@ -199,72 +201,15 @@ update_status ModulePlayer::Update(float dt)
 
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT) {
-
-
-		skid = SKID_POWER;
-
-
-	}
-
 	//playing Sound Conditions
 	
-
-	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_UP ) {
-
-
-		App->audio->StopChannel(1,300);
-
-
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && vehicle->GetKmh()>50) {
-
-
-		App->audio->PlayFx(BrakingSound,0,1);
-
-
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_UP) {
-
-
-
-		App->audio->StopChannel(4, 500);
-		EngineAcceleratingSoundTimer.Start();
-
-
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && vehicle->GetKmh()<10){
+	MusicConditions();
 	
-		if (EngineSoundLoopTimer.Read()>=1000) {
-			App->audio->PlayFx(EngineLoop);
-			EngineSoundLoopTimer.Start();
-		}
-
-	}
-
-	if (vehicle->GetKmh() >10) {
-
-		if (EngineConstantSpeedTimer.Read() >= 4000) {
-			App->audio->PlayFx(constantSpeedEngine,0, 3);
-			EngineConstantSpeedTimer.Start();
-		}
-	}
-	else if (vehicle->GetKmh()<=10) {
-
-		App->audio->StopChannel(3,500);
-
-	}
-	
-
-
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
-	//vehicle->Skid(skid);
+	
 
 	vehicle->Render();
 
@@ -320,3 +265,78 @@ update_status ModulePlayer::Update(float dt)
 
 
 
+void ModulePlayer::MusicConditions() {
+
+
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_UP) {
+
+
+		App->audio->StopChannel(1, 300);
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_DOWN && vehicle->GetKmh() > 50) {
+
+
+		App->audio->PlayFx(BrakingSound, 0, 1);
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT && (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)) {
+
+
+
+		App->audio->PlayFx(Turning);
+
+
+	}
+
+	if ((App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN || App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN) && vehicle->GetKmh() > 170) {
+
+
+
+		App->audio->PlayFx(TireSkid);
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_UP) {
+
+
+
+		App->audio->StopChannel(4, 500);
+		EngineAcceleratingSoundTimer.Start();
+
+
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE && vehicle->GetKmh() < 10) {
+
+		if (EngineSoundLoopTimer.Read() >= 1000) {
+			App->audio->PlayFx(EngineLoop);
+			EngineSoundLoopTimer.Start();
+		}
+
+	}
+
+	if (vehicle->GetKmh() > 10) {
+
+		if (EngineConstantSpeedTimer.Read() >= 4000) {
+			App->audio->PlayFx(constantSpeedEngine, 0, 3);
+			EngineConstantSpeedTimer.Start();
+		}
+	}
+	else if (vehicle->GetKmh() <= 10) {
+
+		App->audio->StopChannel(3, 500);
+
+	}
+
+
+
+
+
+
+}

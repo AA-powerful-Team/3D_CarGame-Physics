@@ -140,14 +140,14 @@ void PhysVehicle3D::Brake(float force)
 	}
 }
 
-void PhysVehicle3D::Skid(float force) {
+void PhysVehicle3D::Skid(float degrees) {
 
 	for (int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
 		if (info.wheels[i].SkidWheel == true)
 		{
 
-				vehicle->setBrake(force,i);
+		vehicle->setSteeringValue(degrees,i);
 			
 		}
 	}
