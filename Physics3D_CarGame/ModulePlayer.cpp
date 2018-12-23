@@ -123,7 +123,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(-200, 2, -170);
+	vehicle->SetPos(260, 2, -370);
 
 
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");
@@ -210,13 +210,13 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 	
-	if (vehicle->overturned() == true) {
+	/*if (vehicle->overturned() == true) {
 
 
 
 		vehicle->SetPos(0, 12, 10);
 
-	}
+	}*/
 
 		
 

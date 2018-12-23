@@ -20,55 +20,8 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	/*CreateRoad(38, 0, -190, 90, vec3(0, 1, 0));
-	CreateRoad(38, 0, -90, 90, vec3(0, 1, 0));
-	CreateRoad(38, 0, 10, 90, vec3(0, 1, 0));
 
-	CreateRoad(100, 0, 70, 0, vec3(1, 0, 0));
-	CreateRoad(200, 0, 70, 0, vec3(1, 0, 0));
-	CreateRoad(300, 0, 70, 0,vec3(0,1,0));
-
-	CreateRoad(360, 0, 10, 90, vec3(0, 1, 0));
-	CreateRoad(360, 0, -90, 90, vec3(0, 1, 0));
-	CreateRoad(360, 0, -190, 90, vec3(0, 1, 0));
-
-	CreateRoad(100, 0, -250, 0, vec3(1, 0, 0));
-	CreateRoad(200, 0, -250, 0, vec3(1, 0, 0));
-	CreateRoad(300, 0, -250, 0, vec3(0, 1, 0));*/
-
-	//CreateCorner(0,0,0,1);
-
-	//CreateCorner(0, 0, +30, 2);
-
-	//CreateCorner(-30, 0, 0, 4);
-
-	//CreateCorner(-30, 0, +30, 3);
-
-	/*CreateRamp(0, 0, 60, 1);
-
-	CreateRamp(0, 0, 90, 2);*/
-
-	CreateCorner(420,0,-370,1);
-	CreateRoad(420, 0, -310, 90, vec3(0, 1, 0));
-	CreateRoad(420, 0, -210, 90, vec3(0, 1, 0));
-	CreateRoad(420, 0, -110, 90, vec3(0, 1, 0));
-	CreateRoad(420, 0, -10, 90, vec3(0, 1, 0));
-	CreateCorner(420,0,50,2);
-
-	CreateRoad(360, 0, 50, 0, vec3(0, 1, 0));
-	CreateRoad(260, 0, 50, 0, vec3(0, 1, 0));
-	CreateRoad(160, 0, 50, 0, vec3(0, 1, 0));
-	CreateRoad(60, 0, 50, 0, vec3(0, 1, 0));
-	CreateRoad(-40, 0, 50, 0, vec3(0, 1, 0));
-	CreateRoad(-140, 0, 50, 0, vec3(0, 1, 0));
-	CreateCorner(-200, 0, 50, 3);
-
-	CreateRoad(-200, 0, -10, 90, vec3(0, 1, 0));
-	CreateRoad(-200, 0, -110, 90, vec3(0, 1, 0));
-	CreateCorner(-200, 0, -170, 4);
-
-	CreateRamp(-143,9, -170, 1);
-	CreateRamp(-149,49 , -170, 1);
+	createMap();
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
 
@@ -215,9 +168,55 @@ void ModuleSceneIntro::CreateRamp(int posx, int posy, int posz, int upordown)
 	}
 	else if (upordown == 2)
 	{
-		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(100, 1, 20), Grey, -20, vec3(0, 0, 1));
+		Cube* cube = cubeCreation(vec3(posx, posy + 8, posz), vec3(100, 1, 20), Grey, -15, vec3(0, 0, 1));
 		cubePhysList.add(CreateCubePhysbody(cube, this));
 		cubeList.add(cube);
 	}
 	
+}
+
+void ModuleSceneIntro::createMap() 
+{
+	CreateCorner(420, 0, -370, 1);
+	CreateRoad(420, 0, -310, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -210, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -110, 90, vec3(0, 1, 0));
+	CreateRoad(420, 0, -10, 90, vec3(0, 1, 0));
+	CreateCorner(420, 0, 50, 2);
+
+	CreateRoad(360, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(260, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(160, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(60, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(-40, 0, 50, 0, vec3(0, 1, 0));
+	CreateRoad(-140, 0, 50, 0, vec3(0, 1, 0));
+	CreateCorner(-200, 0, 50, 3);
+
+	CreateRoad(-200, 0, -10, 90, vec3(0, 1, 0));
+	CreateRoad(-200, 0, -110, 90, vec3(0, 1, 0));
+	CreateCorner(-200, 0, -170, 4);
+
+	CreateRamp(-143, 9, -170, 1);
+	CreateRamp(-57, 40.6, -170, 1);
+
+	CreateRamp(89, 30, -170, 2);
+	CreateRamp(186, 4, -170, 2);
+	CreateRoad(260, 0, -170, 0, vec3(0, 1, 0));
+	CreateCorner(320, 0, -170, 1);
+
+	CreateRoad(320, 0, -110, 90, vec3(0, 1, 0));
+	CreateCorner(320, 0, -50, 2);
+
+	CreateRoad(260, 0, -50, 0, vec3(0, 1, 0));
+	CreateRoad(160, 0, -50, 0, vec3(0, 1, 0));
+	CreateCorner(100, 0, -50, 3);
+
+	CreateRoad(100, 0, -110, 90, vec3(0, 1, 0));
+	CreateRoad(100, 0, -210, 90, vec3(0, 1, 0));
+	CreateRoad(100, 0, -310, 90, vec3(0, 1, 0));
+	CreateCorner(100, 0, -370, 4);
+
+	CreateRoad(160, 0, -370, 0, vec3(0, 1, 0));
+	CreateRoad(260, 0, -370, 0, vec3(0, 1, 0));
+	CreateRoad(360, 0, -370, 0, vec3(0, 1, 0));
 }

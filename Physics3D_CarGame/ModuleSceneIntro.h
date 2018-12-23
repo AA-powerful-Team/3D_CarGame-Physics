@@ -37,6 +37,7 @@ public:
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
+	void createMap();
 
 public:
 	/*
