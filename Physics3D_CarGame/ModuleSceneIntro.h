@@ -15,8 +15,11 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
-
-
+struct compact_info 
+{
+	Cube* cubeinfo;
+	PhysBody3D* Pcubeinfo;
+};
 
 
 class ModuleSceneIntro : public Module
@@ -46,6 +49,8 @@ public:
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false,float mass=0.00f);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
+	compact_info SpinMachine(int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle);
+	compact_info TorqueMove(int posx, int posy, int posz, float angle);
 
 	void createMap();
 	void setObstacle();
@@ -96,4 +101,14 @@ public:
 	bool restart = false;
 	bool passLine = false;
 	bool lock = false;
+
+	//spining fans
+	//Cube cube1, cube2, cube3, cube4, cube5, cube6, cube7;
+	//PhysBody3D* Pcube1, Pcube2, Pcube3, Pcube4, Pcube5, Pcube6, Pcube7;
+	//PhysBody3D* Pmover1, Pmover2, Pmover3, Pmover4, Pmover5, Pmover6, Pmover7;
+	//PhysBody3D *Pcube1;
+	//PhysBody3D *Pmover1;
+	//Cube cube1;
+	compact_info fan1;
+	compact_info mover1;
 };

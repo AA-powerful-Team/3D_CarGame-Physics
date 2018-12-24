@@ -3,9 +3,11 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "PhysBody3D.h"
+//#include "PhysVehicle3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -47,6 +49,15 @@ bool ModuleSceneIntro::Start()
 	
 	Laptime.Start();
 	Totaltime.Start();
+
+	// test
+	
+	fan1 = SpinMachine(160, 7, 50, 10, 1, 1, 90); //lo que gira
+	mover1 = TorqueMove(160, 7, 50, 90); // la base
+	App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+
+
+
 	return ret;
 }
 
@@ -159,6 +170,15 @@ update_status ModuleSceneIntro::Update(float dt)
 		Totaltime.Start();
 		restart = false;
 	}
+
+	
+	fan1.Pcubeinfo->GetTransform(&fan1.cubeinfo->transform);
+	fan1.cubeinfo->Render();
+
+
+
+
+
 
 	return UPDATE_CONTINUE;
 }
@@ -385,20 +405,20 @@ void ModuleSceneIntro::setObstacle()
 	createObstacle(415, 4, -230, 2, 5, 60, Red);
 	createObstacle(415, 4, -140, 10, 5, 10, Red);
 	createObstacle(425, 4, -100, 10, 5, 10, Red);
-	createObstacle(420, 4, -10, 1, 1, 1, Blue); // obstaculo palanca sin torque
+	//createObstacle(420, 4, -10, 1, 1, 1, Blue); // obstaculo palanca sin torque
 
 	createObstacle(360, 4, 55, 5, 5, 5, Red);
 	createObstacle(280, 4, 50, 5, 5, 5, Red);
 
 	
-	createObstacle(160, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	createObstacle(60, 5, 50, 1, 1, 1, Blue);   // obstaculo palanca con torque
-	createObstacle(-40, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	createObstacle(-140, 5, 50, 1, 1, 1, Blue); // obstaculo palanca con torque
+	//(160, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
+	//createObstacle(60, 5, 50, 1, 1, 1, Blue);   // obstaculo palanca con torque
+	//createObstacle(-40, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
+	//createObstacle(-140, 5, 50, 1, 1, 1, Blue); // obstaculo palanca con torque
 
-	createObstacle(320, 5, -110, 1, 1, 1, Blue); // obstaculo palanca sin torque
-	createObstacle(260, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	createObstacle(160, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
+	//createObstacle(320, 5, -110, 1, 1, 1, Blue); // obstaculo palanca sin torque
+	//createObstacle(260, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
+	//createObstacle(160, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
 
 	//boost
 	CreateSpeedBoost(420, 4, -350, 15, 1, 1, Yellow);
@@ -440,24 +460,58 @@ void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex,
 }
 void ModuleSceneIntro::CreateTurbine(int posTorqx, int posTorqy, int sizeTorqz, int sizeShowx, int sizeShowy, int sizeShowz ,Color colorTorq) {
 
-	Cube*Pivot = cubeCreation(vec3(posTorqx, posTorqy, 1), vec3(1, 1, sizeTorqz), colorTorq, 0, vec3(0, 0, 1));
-	PhysBody3D*Pbody = CreateCubePhysbody(Pivot, this, TypeObject::NONE,false,1000.0f);
+	//Cube*Pivot = cubeCreation(vec3(posTorqx, posTorqy, 1), vec3(1, 1, sizeTorqz), colorTorq, 0, vec3(0, 0, 1));
+	//PhysBody3D*Pbody = CreateCubePhysbody(Pivot, this, TypeObject::NONE,false,1000.0f);
+	//
+	////Pivot.SetRotation(90, vec3(0, 1, 0));
+	//
+	////Pbody->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+	//cubePhysList.add(Pbody);
+	//cubeList.add(Pivot);
+
+	//
+	//Cube* Shovel = cubeCreation(vec3((posTorqx+(1/2)), posTorqy, (1-(sizeTorqz/2))+ sizeShowx/2), vec3(sizeShowx, sizeShowy, sizeShowz), Green, 0, vec3(0, 0, 1));
+	//PhysBody3D*Sbody = CreateCubePhysbody(Shovel, this, TypeObject::TURBINE,false, 1000.0f);
+	//cubePhysList.add(Sbody);
+	//cubeList.add(Shovel);
+
+	//vec3 piv(posTorqx + 0.5,posTorqy,1 - (sizeTorqz /2));
+	//vec3 neut(0,0,0);
+
+	//App->physics->AddConstraintHinge(*Pbody,*Sbody, piv, piv, vec3(0, 1, 0), vec3(0, 0, 0),true);
+
+}
+
+compact_info ModuleSceneIntro::SpinMachine( int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle)
+{
+	Cube* cube= cubeCreation(vec3(posx, posy, posz), vec3(sizex, sizey, sizez), Red, angle, vec3(0, 1, 0));
+	cubeList.add(cube);
 	
-	//Pivot.SetRotation(90, vec3(0, 1, 0));
-	
-	//Pbody->GetBody()->setLinearFactor(btVector3(0, 0, 0));
-	cubePhysList.add(Pbody);
-	cubeList.add(Pivot);
+	PhysBody3D* attacher;
+	attacher = CreateCubePhysbody(cube, this, TypeObject::NONE,false, 10000.f);
+	cubePhysList.add(attacher);
+	attacher->PointerGet()->setLinearFactor(btVector3(0, 0, 0));
 
-	
-	Cube* Shovel = cubeCreation(vec3((posTorqx+(1/2)), posTorqy, (1-(sizeTorqz/2))+ sizeShowx/2), vec3(sizeShowx, sizeShowy, sizeShowz), Green, 0, vec3(0, 0, 1));
-	PhysBody3D*Sbody = CreateCubePhysbody(Shovel, this, TypeObject::TURBINE,false, 1000.0f);
-	cubePhysList.add(Sbody);
-	cubeList.add(Shovel);
+	compact_info aux;
+	aux.cubeinfo = cube;
+	aux.Pcubeinfo = attacher;
 
-	vec3 piv(posTorqx + 0.5,posTorqy,1 - (sizeTorqz /2));
-	vec3 neut(0,0,0);
+	return aux;
+}
 
-	App->physics->AddConstraintHinge(*Pbody,*Sbody, piv, piv, vec3(0, 1, 0), vec3(0, 0, 0),true);
+compact_info ModuleSceneIntro::TorqueMove(int posx, int posy, int posz, float angle) {
 
+	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(1, 1, 1), Red, angle, vec3(0, 1, 0));
+	cubeList.add(cube);
+
+	PhysBody3D* attached;
+	attached = CreateCubePhysbody(cube, this, TypeObject::NONE, false, 10000.0f);
+	cubePhysList.add(attached);
+	attached->PointerGet()->setLinearFactor(btVector3(0, 0, 0));
+
+	compact_info aux;
+	aux.cubeinfo = cube;
+	aux.Pcubeinfo = attached;
+
+	return aux;
 }

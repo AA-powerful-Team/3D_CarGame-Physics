@@ -123,8 +123,8 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(100, 2, -165); //start point
-	//vehicle->SetPos(420, 2, -370);
+	//vehicle->SetPos(100, 2, -165); //start point
+	vehicle->SetPos(126, 5, 50);
 	vehicle->GetTransform(&matrix);
 	matrix.rotate(180, vec3(0, 1, 0));
 	vehicle->SetTransform(&matrix);
