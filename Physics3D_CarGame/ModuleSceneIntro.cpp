@@ -23,7 +23,11 @@ bool ModuleSceneIntro::Start()
 	createMap();
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
-
+	 // mas o menos la posicion de los boost es esta
+	// (420,3,-350)
+	// (390,3,50)
+	// (-190,3,-170) este seguramente tenga rotacion en el eje z
+	// la posicion de start es de (100,2,-180)
 	return ret;
 }
 
