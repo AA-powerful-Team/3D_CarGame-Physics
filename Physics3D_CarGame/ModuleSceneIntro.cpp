@@ -51,11 +51,14 @@ bool ModuleSceneIntro::Start()
 	Totaltime.Start();
 
 	// test
-	
-	fan1 = SpinMachine(160, 7, 50, 10, 1, 1, 90); //lo que gira
-	mover1 = TorqueMove(160, 7, 50, 90); // la base
-	App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//
+	//fan1 = SpinMachine(160, 7, 50, 10, 1, 1, 90); //lo que gira
+	//mover1 = TorqueMove(160, 7, 50, 90); // la base
+	//App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 
+	fan2 = SpinMachine(160, 4, 50, 10, 1, 1, 90,100); //lo que gira
+	mover2 = TorqueMove(160, 4, 50, 90,100); // la base
+	App->physics->AddConstraintHinge(*mover2.Pcubeinfo, *fan2.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
 
 	return ret;
@@ -172,8 +175,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 
 	
-	fan1.Pcubeinfo->GetTransform(&fan1.cubeinfo->transform);
-	fan1.cubeinfo->Render();
+	fan2.Pcubeinfo->GetTransform(&fan2.cubeinfo->transform);
+	fan2.cubeinfo->Render();
 
 
 
@@ -190,7 +193,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		App->player->Boost=true;
 
 	}
-	else if (body1->type == TypeObject::OUT_OF_BOUNDS || body2->type == TypeObject::OUT_OF_BOUNDS)
+	else if (body1->type == TypeObject::OUT_OF_BOUNDS && body1->type == TypeObject::VEHICLE)
 	{
 		restart = true;
 	}
@@ -482,13 +485,13 @@ void ModuleSceneIntro::CreateTurbine(int posTorqx, int posTorqy, int sizeTorqz, 
 
 }
 
-compact_info ModuleSceneIntro::SpinMachine( int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle)
+compact_info ModuleSceneIntro::SpinMachine( int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle, float mass)
 {
 	Cube* cube= cubeCreation(vec3(posx, posy, posz), vec3(sizex, sizey, sizez), Red, angle, vec3(0, 1, 0));
 	cubeList.add(cube);
 	
 	PhysBody3D* attacher;
-	attacher = CreateCubePhysbody(cube, this, TypeObject::NONE,false, 10000.f);
+	attacher = CreateCubePhysbody(cube, this, TypeObject::NONE,false, mass);
 	cubePhysList.add(attacher);
 	attacher->PointerGet()->setLinearFactor(btVector3(0, 0, 0));
 
@@ -499,13 +502,13 @@ compact_info ModuleSceneIntro::SpinMachine( int posx, int posy, int posz, int si
 	return aux;
 }
 
-compact_info ModuleSceneIntro::TorqueMove(int posx, int posy, int posz, float angle) {
+compact_info ModuleSceneIntro::TorqueMove(int posx, int posy, int posz, float angle,float mass) {
 
 	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(1, 1, 1), Red, angle, vec3(0, 1, 0));
 	cubeList.add(cube);
 
 	PhysBody3D* attached;
-	attached = CreateCubePhysbody(cube, this, TypeObject::NONE, false, 10000.0f);
+	attached = CreateCubePhysbody(cube, this, TypeObject::NONE, false, mass);
 	cubePhysList.add(attached);
 	attached->PointerGet()->setLinearFactor(btVector3(0, 0, 0));
 

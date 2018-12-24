@@ -43,7 +43,7 @@ void PhysVehicle3D::Render()
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
-
+	
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
@@ -99,7 +99,7 @@ void PhysVehicle3D::Render()
 	chassis6.transform.M[12] += offset6.getX();
 	chassis6.transform.M[13] += offset6.getY();
 	chassis6.transform.M[14] += offset6.getZ();
-
+	
 
 
 	chassis6.Render();

@@ -49,8 +49,8 @@ public:
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false,float mass=0.00f);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
-	compact_info SpinMachine(int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle);
-	compact_info TorqueMove(int posx, int posy, int posz, float angle);
+	compact_info SpinMachine(int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle,float mass= 10000.0f);
+	compact_info TorqueMove(int posx, int posy, int posz, float angle,float mass= 10000.0f);
 
 	void createMap();
 	void setObstacle();
@@ -109,6 +109,13 @@ public:
 	//PhysBody3D *Pcube1;
 	//PhysBody3D *Pmover1;
 	//Cube cube1;
-	compact_info fan1;
+	
+	/*compact_info fan1;
 	compact_info mover1;
+*/
+	compact_info fan2;
+	compact_info mover2;
+
+	/*compact_info fan3;
+	compact_info mover3;*/
 };
