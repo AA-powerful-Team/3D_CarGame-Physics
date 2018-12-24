@@ -24,21 +24,23 @@ bool ModuleSceneIntro::Start()
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
 	laps = 0;
-	Laptime.Start();
-	laps = 0;
 	Lap1 = 0;
 	Lap2 = 0;
 	Lap3 = 0;
+
+	lap1 = 0;
+	lap2 = 0;
+	lap3 = 0;
+	total_Time = 0;
+
 	restart = false;
+	passLine = false;
+	lock = false;
 
-	 // mas o menos la posicion de los boost es esta
-	// (420,3,-350)
-	// (390,3,50)
-	// (-190,3,-170) este seguramente tenga rotacion en el eje z
-	// la posicion de start es de (100,2,-180)
-
-	CreateSpeedBoost(420, 3, -350, 15, 1, 3, Yellow);
-
+	createObstacle(100, 4, -180, 25, 1, 1, Blue, TypeObject::START, true, true);
+	
+	Laptime.Start();
+	Totaltime.Start();
 	return ret;
 }
 
@@ -57,7 +59,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	
+	total_Time = (int)Totaltime.ReadSec();
+
 	p2List_item <Cube*>* cube_render = cubeList.getFirst();
 	while (cube_render != nullptr) {
 		
@@ -65,57 +68,89 @@ update_status ModuleSceneIntro::Update(float dt)
 		cube_render = cube_render->next;
 	
 	}
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP && App->player->vehicle->overturned() == true)
+	{
+		App->player->resetOrientationPos();
+	}
+
+
+	//if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+	//{
+
+	//	if (laps == 1)
+	//		Lap1 = Laptime.ReadSec();
+	//	else if (laps == 2)
+	//		Lap2 = Laptime.ReadSec();
+	//	else if (laps == 3)
+	//		Lap3 = Laptime.ReadSec();
+	//	else if (laps == 4)
+	//		restart = true;
+	//	/*else if (laps==0)
+	//	laps = 1;*/
+
+	//	laps++;
+	//	Laptime.Start();
+	//}
+	if (lock == true && BlockT.ReadSec() >= 30)
+	{
+		lock = false;
+	}
+
+	if (passLine && lock == false)
 	{
 
 		if (laps == 1)
+		{
 			Lap1 = Laptime.ReadSec();
+			lap1 = (int)Lap1;
+
+		}	
 		else if (laps == 2)
+		{
 			Lap2 = Laptime.ReadSec();
+			lap2 = (int)Lap2;
+
+		}	
 		else if (laps == 3)
-			Lap3 = Laptime.ReadSec();
-		else if (laps == 4)
+		{
+			Lap3 = Laptime.ReadSec(); 
+			lap3 = (int)Lap3;
 			restart = true;
-		/*else if (laps==0)
-		laps = 1;*/
+		}
+		
+		lock = true;
 
 		laps++;
 		Laptime.Start();
+		passLine = false;
+		BlockT.Start();
 	}
-
-	/*if (coche tocar sensor de start)
-	{
-
-	if (laps == 1)
-	Lap1 = Laptime.ReadSec();
-	else if (laps == 2)
-	Lap2 = Laptime.ReadSec();
-	else if (laps == 3)
-	Lap3 = Laptime.ReadSec();
-	else if (laps == 4)
-	restart = true;
-	else
-	laps = 1;
-	laps++;
-	Laptime.Start();
-	}*/
+	
+	
 
 	if (restart)
 	{
+		
+		App->player->resetPlayerPos();
 
-		if (Lap1 + Lap2 + Lap3 <= 240.0f)
+		if (laps <= 4)
 		{
-			//win
-			App->player->resetPlayerPos();
-		}
-		else
-			App->player->resetPlayerPos();
+			//win condition stop movement. postion camera active and inactive bool
 
+		}
 
 		laps = 0;
+
 		Lap1 = 0;
 		Lap2 = 0;
 		Lap3 = 0;
+
+		lap1 = 0;
+		lap2 = 0;
+		lap3 = 0;
+
+		Totaltime.Start();
 		restart = false;
 	}
 
@@ -128,6 +163,14 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 		App->player->Boost=true;
 
+	}
+	else if (body1->type == TypeObject::OUT_OF_BOUNDS || body2->type == TypeObject::OUT_OF_BOUNDS)
+	{
+		restart = true;
+	}
+	else if (body1->type == TypeObject::START)
+	{
+		passLine = true;
 	}
 
 
@@ -235,7 +278,6 @@ void ModuleSceneIntro::CreateCorner(int posx, int posy, int posz, int side)
 	
 }
 
-
 void ModuleSceneIntro::CreateRamp(int posx, int posy, int posz, int upordown)
 {
 	if (upordown == 1)
@@ -321,10 +363,11 @@ void ModuleSceneIntro::createMap()
 
 }
 
-void ModuleSceneIntro::createObstacle(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color)
+void ModuleSceneIntro::createObstacle(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color, TypeObject type , bool is_sensor, bool wire)
 {
 	Cube* cube = cubeCreation(vec3(posx, posy, posz), vec3(sizex, sizey, sizez), color, 0, vec3(0, 0, 1));
-	cubePhysList.add(CreateCubePhysbody(cube, this));
+	cube->wire = wire;
+	cubePhysList.add(CreateCubePhysbody(cube, this, type, is_sensor));
 	cubeList.add(cube);
 
 }
@@ -349,17 +392,21 @@ void ModuleSceneIntro::setObstacle()
 	createObstacle(320, 5, -110, 1, 1, 1, Blue); // obstaculo palanca sin torque
 	createObstacle(260, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
 	createObstacle(160, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
+
+	//boost
+	CreateSpeedBoost(420, 4, -350, 15, 1, 1, Yellow);
+	CreateSpeedBoost(390, 4, 50, 1, 1, 15, Yellow);
+	CreateSpeedBoost(-190, 5, -170, 1, 2, 15, Yellow);
 }
 
 void ModuleSceneIntro::CreateWorldBoundaries()
 {
 
-	createObstacle(-140, 0, 100, 1300, 1, 1200, OtherGrey);
-	createObstacle(500, 90, 170, 2, 250, 1400, LightBlue);
-	createObstacle(-500, 90, 170, 2, 250, 1400, LightBlue);
-
-	createObstacle(100, 90, 200, 1400, 800, 200, LightBlue);
-	createObstacle(100, 90, -550, 1400, 800, 200, LightBlue);
+	createObstacle(-140, 0, 100, 1300, 1, 1200, OtherGrey, TypeObject::OUT_OF_BOUNDS,true);
+	createObstacle(500, 90, 170, 2, 250, 1400, LightBlue, TypeObject::OUT_OF_BOUNDS, true);
+	createObstacle(-500, 90, 170, 2, 250, 1400, LightBlue, TypeObject::OUT_OF_BOUNDS, true);
+	createObstacle(100, 90, 200, 1400, 800, 200, LightBlue, TypeObject::OUT_OF_BOUNDS, true);
+	createObstacle(100, 90, -550, 1400, 800, 200, LightBlue, TypeObject::OUT_OF_BOUNDS, true);
 
 }
 
@@ -376,12 +423,11 @@ void ModuleSceneIntro::createBuilding(int posx, int posy, int posz, int sizex, i
 	cubeList.add(cube3);
 
 }
-void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color) {
 
+void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color) {
 
 	Cube*Boost = cubeCreation(vec3(posx, posy, posz),vec3(sizex, sizey, sizez),color, 0, vec3(0, 0, 1));
 	cubePhysList.add(CreateCubePhysbody(Boost, this,TypeObject::BOOST_SPEED,true));
 	cubeList.add(Boost);
-
 
 }

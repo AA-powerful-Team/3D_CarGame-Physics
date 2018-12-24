@@ -44,11 +44,11 @@ Uint32 Timer::ReadSec()
 {
 	if (running == true)
 	{
-		return SDL_GetTicks() - started_at/1000;
+		return (SDL_GetTicks() - started_at)/1000;
 	}
 	else
 	{
-		return stopped_at - started_at/1000;
+		return (stopped_at - started_at)/1000;
 	}
 }
 

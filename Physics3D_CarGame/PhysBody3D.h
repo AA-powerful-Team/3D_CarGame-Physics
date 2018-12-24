@@ -11,6 +11,8 @@ enum class TypeObject {
 	WALL_ROAD,
 	BOOST_SPEED,
 	VEHICLE,
+	OUT_OF_BOUNDS,
+	START,
 	NONE
 
 
@@ -28,6 +30,8 @@ public:
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
 	void AsSensor(bool is_sensor)const;
+
+
 private:
 	btRigidBody* body = nullptr;
 
