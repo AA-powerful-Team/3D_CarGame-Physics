@@ -14,6 +14,10 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+
+
+
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -35,9 +39,10 @@ public:
 	void createObstacle(int posx, int posy, int posz, int sizex, int sizey, int sizez,Color color);
 	void CreateWorldBoundaries(); 
 	void createBuilding(int posx, int posy, int posz, int sizex, int sizey, int sizez);
+	void CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color);
 
 
-	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback);
+	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
 

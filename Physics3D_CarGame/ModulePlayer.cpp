@@ -129,6 +129,7 @@ bool ModulePlayer::Start()
 	matrix.rotate(180, vec3(0, 1, 0));
 	vehicle->SetTransform(&matrix);
 
+
 	RevEngineSound=App->audio->LoadFx("FX/Rev.wav");
 	StartingEngine = App->audio->LoadFx("FX/StartingEngine.wav");
 	EngineLoop = App->audio->LoadFx("FX/EngineLoop.wav");
@@ -207,6 +208,14 @@ update_status ModulePlayer::Update(float dt)
 	//playing Sound Conditions
 	
 	MusicConditions();
+
+	if (Boost == true) {
+
+		acceleration += BOOST_POWER;
+
+		Boost = false;
+
+	}
 	
 
 	vehicle->ApplyEngineForce(acceleration);
@@ -221,6 +230,7 @@ update_status ModulePlayer::Update(float dt)
 
 	}*/
 
+	
 		
 
 

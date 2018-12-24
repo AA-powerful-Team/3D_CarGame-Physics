@@ -4,7 +4,11 @@
 
 // =================================================
 PhysBody3D::PhysBody3D(btRigidBody* body) : body(body)
-{}
+{
+
+	body->setUserPointer(this);
+
+}
 
 // ---------------------------------------------------------
 PhysBody3D::~PhysBody3D()
@@ -45,11 +49,17 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
 }
-void  PhysBody3D::AsSensor()const {
-
-	body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+void  PhysBody3D::AsSensor(bool is_sensor)const {
 
 
+	if (this->is_sensor != is_sensor)
+	{
+		this->is_sensor = is_sensor;
+		if (is_sensor == true)
+			body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+		else
+			body->setCollisionFlags(body->getCollisionFlags() &~btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	}
 
 
 

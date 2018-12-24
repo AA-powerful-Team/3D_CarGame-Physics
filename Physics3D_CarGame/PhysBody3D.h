@@ -6,6 +6,15 @@
 class btRigidBody;
 class Module;
 
+enum class TypeObject {
+
+	WALL_ROAD,
+	BOOST_SPEED,
+	VEHICLE,
+	NONE
+
+
+};
 // =================================================
 struct PhysBody3D
 {
@@ -18,11 +27,14 @@ public:
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
-	void AsSensor()const;
+	void AsSensor(bool is_sensor)const;
 private:
 	btRigidBody* body = nullptr;
 
 public:
+
+	bool mutable is_sensor;
+	TypeObject type;
 	p2List<Module*> collision_listeners;
 };
 
