@@ -390,7 +390,7 @@ void ModuleSceneIntro::setObstacle()
 	createObstacle(360, 4, 55, 5, 5, 5, Red);
 	createObstacle(280, 4, 50, 5, 5, 5, Red);
 
-	CreateTurbine(160, 5, 50,1,1,10,Red);
+	
 	createObstacle(160, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
 	createObstacle(60, 5, 50, 1, 1, 1, Blue);   // obstaculo palanca con torque
 	createObstacle(-40, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
