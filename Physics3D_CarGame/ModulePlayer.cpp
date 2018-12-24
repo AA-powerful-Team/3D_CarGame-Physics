@@ -138,6 +138,7 @@ bool ModulePlayer::Start()
 	BrakingSound = App->audio->LoadFx("FX/Braking.wav");
 	Turning = App->audio->LoadFx("FX/turning.wav");
 	TireSkid = App->audio->LoadFx("FX/tireSkid.wav");
+	BoostSound = App->audio->LoadFx("FX/boost.wav");
 
 	App->audio->PlayFx(StartingEngine);
 	
@@ -172,7 +173,7 @@ update_status ModulePlayer::Update(float dt)
 	{
 
 		if (vehicle->GetKmh()>0) {
-			acceleration = -MAX_ACCELERATION;
+			acceleration = -MAX_ACCELERATION*0.25;
 		}
 		
 
@@ -223,6 +224,7 @@ update_status ModulePlayer::Update(float dt)
 	if (Boost == true) {
 
 		acceleration += BOOST_POWER;
+		App->audio->PlayFx(BoostSound);
 
 		Boost = false;
 
@@ -363,9 +365,6 @@ void ModulePlayer::MusicConditions() {
 
 
 }
-
-
-
 
 void ModulePlayer::resetPlayerPos()
 {

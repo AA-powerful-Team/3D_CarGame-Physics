@@ -45,6 +45,9 @@ bool ModuleSceneIntro::Start()
 
 	createObstacle(100, 4, -180, 25, 1, 1, Blue, TypeObject::START, true, true);
 	
+	LapSound = App->audio->LoadFx("FX/Beep.wav");
+
+
 	Laptime.Start();
 	Totaltime.Start();
 	return ret;
@@ -176,6 +179,10 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	}
 	else if (body1->type == TypeObject::START)
 	{
+		if (LapTimeSound.Read() > 4000) {
+			App->audio->PlayFx(LapSound);
+			LapTimeSound.Start();
+		}
 		passLine = true;
 	}
 

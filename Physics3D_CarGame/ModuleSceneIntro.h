@@ -84,12 +84,14 @@ public:
 
 	//music
 	uint StageMusic;
-
+	uint LapSound;
 	// timer and laps 
 	int laps = 0;
 	Timer Laptime;
 	Timer Totaltime;
 	Timer BlockT;
+	Timer LapTimeSound;
+
 	Uint32 Lap1, Lap2, Lap3;
 	int lap1=0, lap2=0, lap3=0;
 	int total_Time=0;

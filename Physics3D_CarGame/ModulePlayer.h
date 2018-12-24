@@ -49,7 +49,7 @@ public:
 	uint BrakingSound;
 	uint Turning;
 	uint TireSkid;
-	
+	uint BoostSound;
 
 	Timer EngineSoundLoopTimer;
 	Timer EngineConstantSpeedTimer;
