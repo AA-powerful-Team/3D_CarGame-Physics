@@ -23,6 +23,14 @@ bool ModuleSceneIntro::Start()
 	createMap();
 
 	App->audio->PlayMusic("FX/StageMusic.wav");
+	laps = 0;
+	Laptime.Start();
+	laps = 0;
+	Lap1 = 0;
+	Lap2 = 0;
+	Lap3 = 0;
+	restart = false;
+
 	 // mas o menos la posicion de los boost es esta
 	// (420,3,-350)
 	// (390,3,50)
@@ -56,6 +64,59 @@ update_status ModuleSceneIntro::Update(float dt)
 		cube_render->data->Render();
 		cube_render = cube_render->next;
 	
+	}
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+	{
+
+		if (laps == 1)
+			Lap1 = Laptime.ReadSec();
+		else if (laps == 2)
+			Lap2 = Laptime.ReadSec();
+		else if (laps == 3)
+			Lap3 = Laptime.ReadSec();
+		else if (laps == 4)
+			restart = true;
+		/*else if (laps==0)
+		laps = 1;*/
+
+		laps++;
+		Laptime.Start();
+	}
+
+	/*if (coche tocar sensor de start)
+	{
+
+	if (laps == 1)
+	Lap1 = Laptime.ReadSec();
+	else if (laps == 2)
+	Lap2 = Laptime.ReadSec();
+	else if (laps == 3)
+	Lap3 = Laptime.ReadSec();
+	else if (laps == 4)
+	restart = true;
+	else
+	laps = 1;
+	laps++;
+	Laptime.Start();
+	}*/
+
+	if (restart)
+	{
+
+		if (Lap1 + Lap2 + Lap3 <= 240.0f)
+		{
+			//win
+			App->player->resetPlayerPos();
+		}
+		else
+			App->player->resetPlayerPos();
+
+
+		laps = 0;
+		Lap1 = 0;
+		Lap2 = 0;
+		Lap3 = 0;
+		restart = false;
 	}
 
 	return UPDATE_CONTINUE;
