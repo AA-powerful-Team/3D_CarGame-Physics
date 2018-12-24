@@ -28,6 +28,9 @@ bool ModuleSceneIntro::Start()
 	// (390,3,50)
 	// (-190,3,-170) este seguramente tenga rotacion en el eje z
 	// la posicion de start es de (100,2,-180)
+
+	CreateSpeedBoost(420, 3, -350, 15, 1, 3, Yellow);
+
 	return ret;
 }
 
@@ -60,6 +63,14 @@ update_status ModuleSceneIntro::Update(float dt)
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+	if (body1->type==TypeObject::BOOST_SPEED) {
+
+		App->player->Boost=true;
+
+	}
+
+
+
 }
 
 void ModuleSceneIntro::CreatePath(int posx, int posy, int posz, int angle,vec3 rotation) {
@@ -114,11 +125,14 @@ Cube* ModuleSceneIntro::cubeCreation(vec3 position, vec3 size, Color rgb, float 
 	return cube;
 }
 
-PhysBody3D* ModuleSceneIntro::CreateCubePhysbody(Cube* cube, Module* Callback) {
+PhysBody3D* ModuleSceneIntro::CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type,bool is_sensor) {
 
 	PhysBody3D* cubeP;
 	cubeP = App->physics->AddBody(*cube, 0.0f);
+	cubeP->type = type;
+	cubeP->AsSensor(is_sensor);
 	cubeP->collision_listeners.add(Callback);
+	
 
 	return cubeP;
 }
@@ -234,6 +248,10 @@ void ModuleSceneIntro::createMap()
 	createBuilding(260, 35, -280, 260, 70, 120);
 	createBuilding(200, 10, -110, 170, 20, 60);
 	
+	
+
+
+
 	// obstacles
 	setObstacle();
 
@@ -295,5 +313,14 @@ void ModuleSceneIntro::createBuilding(int posx, int posy, int posz, int sizex, i
 	Cube* cube3 = cubeCreation(vec3(posx, posy +sizey*2, posz), vec3(sizex /1.5, sizey, sizez / 4), GreyBuilding, 0, vec3(0, 0, 1));
 	cubePhysList.add(CreateCubePhysbody(cube3, this));
 	cubeList.add(cube3);
+
+}
+void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color) {
+
+
+	Cube*Boost = cubeCreation(vec3(posx, posy, posz),vec3(sizex, sizey, sizez),color, 0, vec3(0, 0, 1));
+	cubePhysList.add(CreateCubePhysbody(Boost, this,TypeObject::BOOST_SPEED,true));
+	cubeList.add(Boost);
+
 
 }
