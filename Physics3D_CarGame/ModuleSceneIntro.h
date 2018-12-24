@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "PhysVehicle3D.h"
 #include "PhysBody3D.h"
+#include "Timer.h"
 
 #define MAX_SNAKE 2
 
@@ -78,4 +79,12 @@ public:
 
 	//music
 	uint StageMusic;
+
+	// timer and laps 
+	int laps = 0;
+	Timer Laptime;
+	Uint32 Lap1, Lap2, Lap3;
+
+	bool restart = false;
+
 };

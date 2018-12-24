@@ -123,8 +123,8 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(100, 2, -180); //start point
-	//vehicle->SetPos(420, 2, -350);
+	//vehicle->SetPos(100, 2, -165); //start point
+	vehicle->SetPos(420, 2, -370);
 	vehicle->GetTransform(&matrix);
 	matrix.rotate(180, vec3(0, 1, 0));
 	vehicle->SetTransform(&matrix);
@@ -227,7 +227,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%.1f Km/h  Laps:%i /3  Lap1:%u   Lap2:%u   Lap3:%u   ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->Lap1, App->scene_intro->Lap2, App->scene_intro->Lap3);
 	App->window->SetTitle(title);
 
 	App->camera->LookAt(vehicle->GetVehiclePos());
@@ -352,4 +352,16 @@ void ModulePlayer::MusicConditions() {
 
 
 
+}
+
+
+
+
+void ModulePlayer::resetPlayerPos()
+{
+	vehicle->SetPos(100, 2, -165); //start point
+	vehicle->GetTransform(&matrix);
+	matrix.rotate(180, vec3(0, 1, 0));
+	vehicle->SetTransform(&matrix);
+	
 }

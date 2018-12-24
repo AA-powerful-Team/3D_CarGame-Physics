@@ -21,6 +21,7 @@ public:
 	bool CleanUp();
 
 	void MusicConditions();
+	void resetPlayerPos();
 
 public:
 
