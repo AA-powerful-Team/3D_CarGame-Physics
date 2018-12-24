@@ -37,13 +37,13 @@ public:
 	void CreateCornerFloor(int posx, int posy, int posz);
 	void CreateCorner(int posx, int posy, int posz, int side);
 	void CreateRamp(int posx, int posy, int posz, int upordown);
-	void createObstacle(int posx, int posy, int posz, int sizex, int sizey, int sizez,Color color);
+	void createObstacle(int posx, int posy, int posz, int sizex, int sizey, int sizez,Color color, TypeObject type=TypeObject::NONE, bool is_sensor=false, bool wire=false);
 	void CreateWorldBoundaries(); 
 	void createBuilding(int posx, int posy, int posz, int sizex, int sizey, int sizez);
 	void CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color);
+	void CreateTurbine(int posTorqx, int posTorqy, int posTorqz, int sizeShowx, int sizeShowy, int sizeShowz, Color colorTorq);
 
-
-	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false);
+	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false,float mass=0.00f);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
 
@@ -88,8 +88,12 @@ public:
 	// timer and laps 
 	int laps = 0;
 	Timer Laptime;
+	Timer Totaltime;
+	Timer BlockT;
 	Uint32 Lap1, Lap2, Lap3;
-
+	int lap1=0, lap2=0, lap3=0;
+	int total_Time=0;
 	bool restart = false;
-
+	bool passLine = false;
+	bool lock = false;
 };
