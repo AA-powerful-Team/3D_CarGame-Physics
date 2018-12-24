@@ -23,7 +23,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 
 	createMap();
-
+	
 	App->audio->PlayMusic("FX/StageMusic.wav");
 	laps = 0;
 	Lap1 = 0;
@@ -35,10 +35,6 @@ bool ModuleSceneIntro::Start()
 	lap3 = 0;
 	total_Time = 0;
 
-	
-	//App->physics->AddConstraintHinge(*motor_1, *helix_1, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
-												
-	//CreateSpeedBoost(420, 4, -350, 15, 1, 3, Yellow);
 
 	restart = false;
 	passLine = false;
@@ -49,16 +45,6 @@ bool ModuleSceneIntro::Start()
 	
 	Laptime.Start();
 	Totaltime.Start();
-
-	// test
-	//
-	//fan1 = SpinMachine(160, 7, 50, 10, 1, 1, 90); //lo que gira
-	//mover1 = TorqueMove(160, 7, 50, 90); // la base
-	//App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
-
-	fan2 = SpinMachine(160, 4, 50, 10, 1, 1, 90,100); //lo que gira
-	mover2 = TorqueMove(160, 4, 50, 90,100); // la base
-	App->physics->AddConstraintHinge(*mover2.Pcubeinfo, *fan2.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
 
 	return ret;
@@ -175,8 +161,30 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 
 	
+	fan1.Pcubeinfo->GetTransform(&fan1.cubeinfo->transform);
+	fan1.cubeinfo->Render();
+
 	fan2.Pcubeinfo->GetTransform(&fan2.cubeinfo->transform);
 	fan2.cubeinfo->Render();
+
+	fan3.Pcubeinfo->GetTransform(&fan3.cubeinfo->transform);
+	fan3.cubeinfo->Render();
+
+	fan4.Pcubeinfo->GetTransform(&fan4.cubeinfo->transform);
+	fan4.cubeinfo->Render();
+
+	fan5.Pcubeinfo->GetTransform(&fan5.cubeinfo->transform);
+	fan5.cubeinfo->Render();
+
+	fan6.Pcubeinfo->GetTransform(&fan6.cubeinfo->transform);
+	fan6.cubeinfo->Render();
+
+	fan7.Pcubeinfo->GetTransform(&fan7.cubeinfo->transform);
+	fan7.cubeinfo->Render();
+
+	fan8.Pcubeinfo->GetTransform(&fan8.cubeinfo->transform);
+	fan8.cubeinfo->Render();
+
 
 
 
@@ -386,6 +394,7 @@ void ModuleSceneIntro::createMap()
 
 	// obstacles
 	setObstacle();
+	CreateTurbine();
 
 	//limits
 	CreateWorldBoundaries();
@@ -409,7 +418,7 @@ void ModuleSceneIntro::setObstacle()
 	createObstacle(415, 4, -140, 10, 5, 10, Red);
 	createObstacle(425, 4, -100, 10, 5, 10, Red);
 	//createObstacle(420, 4, -10, 1, 1, 1, Blue); // obstaculo palanca sin torque
-
+	
 	createObstacle(360, 4, 55, 5, 5, 5, Red);
 	createObstacle(280, 4, 50, 5, 5, 5, Red);
 
@@ -461,27 +470,44 @@ void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex,
 	cubeList.add(Boost);
 
 }
-void ModuleSceneIntro::CreateTurbine(int posTorqx, int posTorqy, int sizeTorqz, int sizeShowx, int sizeShowy, int sizeShowz ,Color colorTorq) {
+void ModuleSceneIntro::CreateTurbine() 
+{
 
-	//Cube*Pivot = cubeCreation(vec3(posTorqx, posTorqy, 1), vec3(1, 1, sizeTorqz), colorTorq, 0, vec3(0, 0, 1));
-	//PhysBody3D*Pbody = CreateCubePhysbody(Pivot, this, TypeObject::NONE,false,1000.0f);
-	//
-	////Pivot.SetRotation(90, vec3(0, 1, 0));
-	//
-	////Pbody->GetBody()->setLinearFactor(btVector3(0, 0, 0));
-	//cubePhysList.add(Pbody);
-	//cubeList.add(Pivot);
 
-	//
-	//Cube* Shovel = cubeCreation(vec3((posTorqx+(1/2)), posTorqy, (1-(sizeTorqz/2))+ sizeShowx/2), vec3(sizeShowx, sizeShowy, sizeShowz), Green, 0, vec3(0, 0, 1));
-	//PhysBody3D*Sbody = CreateCubePhysbody(Shovel, this, TypeObject::TURBINE,false, 1000.0f);
-	//cubePhysList.add(Sbody);
-	//cubeList.add(Shovel);
+	//without
+	fan1 = SpinMachine(420, 4, -10, 10, 1, 1, 90, 100);
+	mover1 = TorqueMove(420, 4, -10, 90, 100);
+	App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
-	//vec3 piv(posTorqx + 0.5,posTorqy,1 - (sizeTorqz /2));
-	//vec3 neut(0,0,0);
+	//with
+	fan2 = SpinMachine(160, 4, 50, 10, 1, 1, 90);
+	mover2 = TorqueMove(160, 4, 50, 90);
+	App->physics->AddConstraintHinge(*mover2.Pcubeinfo, *fan2.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//with
+	fan3 = SpinMachine(60, 4, 50, 10, 1, 1, 90);
+	mover3 = TorqueMove(60, 4, 50, 90);
+	App->physics->AddConstraintHinge(*mover3.Pcubeinfo, *fan3.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//with
+	fan4 = SpinMachine(-40, 4, 50, 10, 1, 1, 90);
+	mover4 = TorqueMove(-40, 4, 50, 90);
+	App->physics->AddConstraintHinge(*mover4.Pcubeinfo, *fan4.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//with
+	fan5 = SpinMachine(-140, 4, 50, 10, 1, 1, 90);
+	mover5 = TorqueMove(-140, 4, 50, 90);
+	App->physics->AddConstraintHinge(*mover5.Pcubeinfo, *fan5.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//with
+	fan6 = SpinMachine(320, 4, -110, 10, 1, 1, 90);
+	mover6 = TorqueMove(320, 4, -110, 90);
+	App->physics->AddConstraintHinge(*mover6.Pcubeinfo, *fan6.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//with
+	fan7 = SpinMachine(260, 4, -50, 10, 1, 1, 90);
+	mover7 = TorqueMove(260, 4, -50, 90);
+	App->physics->AddConstraintHinge(*mover7.Pcubeinfo, *fan7.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+	//without
+	fan8 = SpinMachine(160, 4, -50, 10, 1, 1, 90);
+	mover8 = TorqueMove(160, 4, -50, 90, 100);
+	App->physics->AddConstraintHinge(*mover8.Pcubeinfo, *fan8.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
-	//App->physics->AddConstraintHinge(*Pbody,*Sbody, piv, piv, vec3(0, 1, 0), vec3(0, 0, 0),true);
 
 }
 

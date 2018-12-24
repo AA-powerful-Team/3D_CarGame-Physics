@@ -44,7 +44,7 @@ public:
 	void CreateWorldBoundaries(); 
 	void createBuilding(int posx, int posy, int posz, int sizex, int sizey, int sizez);
 	void CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color);
-	void CreateTurbine(int posTorqx, int posTorqy, int posTorqz, int sizeShowx, int sizeShowy, int sizeShowz, Color colorTorq);
+	void CreateTurbine();
 
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false,float mass=0.00f);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
@@ -103,19 +103,28 @@ public:
 	bool lock = false;
 
 	//spining fans
-	//Cube cube1, cube2, cube3, cube4, cube5, cube6, cube7;
-	//PhysBody3D* Pcube1, Pcube2, Pcube3, Pcube4, Pcube5, Pcube6, Pcube7;
-	//PhysBody3D* Pmover1, Pmover2, Pmover3, Pmover4, Pmover5, Pmover6, Pmover7;
-	//PhysBody3D *Pcube1;
-	//PhysBody3D *Pmover1;
-	//Cube cube1;
 	
-	/*compact_info fan1;
+	compact_info fan1;
 	compact_info mover1;
-*/
+
 	compact_info fan2;
 	compact_info mover2;
 
-	/*compact_info fan3;
-	compact_info mover3;*/
+	compact_info fan3;
+	compact_info mover3;
+
+	compact_info fan4;
+	compact_info mover4;
+
+	compact_info fan5;
+	compact_info mover5;
+
+	compact_info fan6;
+	compact_info mover6;
+
+	compact_info fan7;
+	compact_info mover7;
+
+	compact_info fan8;
+	compact_info mover8;
 };
