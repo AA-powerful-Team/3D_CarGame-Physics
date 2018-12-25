@@ -137,16 +137,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (restart)
 	{
 		App->player->Menu = true;
-		//App->physics->RemoveVehicle();
-		//App->player->addVehicle();
 		App->player->resetPlayerPos();
+		App->player->vehicle->StopVelocities();
+		
 
-		if (laps <= 4)
-		{
-			//win condition stop movement. postion camera active and inactive bool
-			//bool active=false;
-			//cange camera
-		}
+		
 
 		laps = 0;
 
@@ -160,6 +155,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		Totaltime.Start();
 		restart = false;
+
 	}
 
 	
@@ -498,8 +494,8 @@ void ModuleSceneIntro::CreateTurbine()
 	mover7 = TorqueMove(260, 6, -50, 90);
 	App->physics->AddConstraintHinge(*mover7.Pcubeinfo, *fan7.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//without
-	fan8 = SpinMachine(160, 6, -50, 10, 1, 1, 90);
-	mover8 = TorqueMove(160, 6, -50, 90, 100);
+	fan8 = SpinMachine(160, 4, -50, 10, 1, 1, 90, 100);
+	mover8 = TorqueMove(160, 4, -50, 90, 100);
 	App->physics->AddConstraintHinge(*mover8.Pcubeinfo, *fan8.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
 
