@@ -24,7 +24,8 @@ bool ModuleSceneIntro::Start()
 
 	createMap();
 	
-	App->audio->PlayMusic("FX/StageMusic.wav");
+	
+
 	laps = 0;
 	Lap1 = 0;
 	Lap2 = 0;
@@ -135,6 +136,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	if (restart)
 	{
+		App->player->Menu = true;
 		//App->physics->RemoveVehicle();
 		//App->player->addVehicle();
 		App->player->resetPlayerPos();

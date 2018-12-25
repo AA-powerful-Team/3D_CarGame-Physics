@@ -33,7 +33,7 @@ bool ModulePlayer::Start()
 	TireSkid = App->audio->LoadFx("FX/tireSkid.wav");
 	BoostSound = App->audio->LoadFx("FX/boost.wav");
 
-	App->audio->PlayFx(StartingEngine);
+	
 	
 	return true;
 }
@@ -52,133 +52,168 @@ update_status ModulePlayer::Update(float dt)
 	turn = acceleration = brake = 0.0f;
 
 
-
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh()<5) {
-
-
-		App->audio->PlayFx(RevEngineSound);
-
-	}
-
-	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE)
-	{
-
-		if (vehicle->GetKmh()>0) {
-			acceleration = -MAX_ACCELERATION*0.25;
+	if (Menu == true) {
+	
+		if (playMusic == true) {
+			App->audio->PlayMusic("FX/MenuGame.wav");
+			playMusic = false;
 		}
-		
 
+		if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN) {
+
+			Menu = false;
+			playMusic = true;
+			App->audio->PlayFx(StartingEngine);
+			App->audio->PlayMusic("FX/StageMusic.wav");
+		}
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION;
+	if (Menu == false) {
 
-		if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh()>100) {
-			App->audio->PlayFx(AcceleratingEngine, 0, 4);
-			EngineAcceleratingSoundTimer.Start();
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh() < 5) {
+
+
+			App->audio->PlayFx(RevEngineSound);
 
 		}
 
-	}
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE)
+		{
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-
-		acceleration = -MAX_ACCELERATION;
-	
-	}
-	if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT) {
+			if (vehicle->GetKmh() > 0) {
+				acceleration = -MAX_ACCELERATION * 0.25;
+			}
 
 
-		brake = BRAKE_POWER;
-		
-
-	}
-
-	//playing Sound Conditions
-	
-	MusicConditions();
-
-	if (Boost == true) {
-
-		vehicle->ApplyEngineForce(BOOST_POWER);
-		acceleration += BOOST_POWER;
-		App->audio->PlayFx(BoostSound);
-
-		Boost = false;
-
-	}
-	
-
-	vehicle->ApplyEngineForce(acceleration);
-	vehicle->Turn(turn);
-	vehicle->Brake(brake);
-	
-
-	vehicle->Render();
-
-	
-	char title[300];
-	sprintf_s(title, "%.1f Km/h Lap: %i /3 Lap1:%i Lap2:%i Lap3:%i TitalTime:%i ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->lap1, App->scene_intro->lap2, App->scene_intro->lap3, App->scene_intro->total_Time);
-	App->window->SetTitle(title);
-
-	App->camera->LookAt(vehicle->GetVehiclePos());
-
-
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_IDLE)
-	{
-
-
-		if (CurrentVelocity > vehicle->GetKmh()) {
-			
-			if(CameraZoom>10)
-			CameraZoom -= cameraAcceleration;
-
-			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 		}
-		else if (CurrentVelocity < vehicle->GetKmh()) {
-			
-			
-			if (vehicle->GetKmh()>50 && CameraZoom < 20)
-			CameraZoom += cameraAcceleration;
+
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION;
+
+			if (EngineAcceleratingSoundTimer.Read() >= 4000 && vehicle->GetKmh() > 100) {
+				App->audio->PlayFx(AcceleratingEngine, 0, 4);
+				EngineAcceleratingSoundTimer.Start();
+
+			}
+
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+
+			acceleration = -MAX_ACCELERATION;
+
+		}
+		if (App->input->GetKey(SDL_SCANCODE_LCTRL) == KEY_REPEAT) {
+
+
+			brake = BRAKE_POWER;
+
+
+		}
+
+		//playing Sound Conditions
+
+		MusicConditions();
+
+		if (Boost == true) {
+
+			vehicle->ApplyEngineForce(BOOST_POWER);
+			acceleration += BOOST_POWER;
+			App->audio->PlayFx(BoostSound);
+
+			Boost = false;
+
+		}
+
+
+		vehicle->ApplyEngineForce(acceleration);
+		vehicle->Turn(turn);
+		vehicle->Brake(brake);
+
+
+		vehicle->Render();
+
+
+		char title[300];
+		sprintf_s(title, "%.1f Km/h Lap: %i /3 Lap1:%i Lap2:%i Lap3:%i TitalTime:%i ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->lap1, App->scene_intro->lap2, App->scene_intro->lap3, App->scene_intro->total_Time);
+		App->window->SetTitle(title);
+
+
+		App->camera->LookAt(vehicle->GetVehiclePos());
+
+
+		if (App->input->GetKey(SDL_SCANCODE_P) == KEY_IDLE)
+		{
+
+
+			if (CurrentVelocity > vehicle->GetKmh()) {
+
+				if (CameraZoom > 10)
+					CameraZoom -= cameraAcceleration;
+
+				App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+			}
+			else if (CurrentVelocity < vehicle->GetKmh()) {
+
+
+				if (vehicle->GetKmh() > 50 && CameraZoom < 20)
+					CameraZoom += cameraAcceleration;
 
 				App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
 
-				
-		}
-		else if (CurrentVelocity == vehicle->GetKmh()) {
-			
-			if (CurrentVelocity < 2.00 && CameraZoom > 10) {
 
-				CameraZoom -=0.5;
 			}
-			App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+			else if (CurrentVelocity == vehicle->GetKmh()) {
+
+				if (CurrentVelocity < 2.00 && CameraZoom > 10) {
+
+					CameraZoom -= 0.5;
+				}
+				App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() * CameraZoom + vec3(0, 6, 0));
+			}
+
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT) {
+
+
+			App->camera->Position = (vehicle->GetVehiclePos() + vehicle->GetDirectionVec() * 12 + vec3(0, 6, 0));
+
 		}
 
+		CurrentVelocity = vehicle->GetKmh();
+
+		
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT) {
-	
-	
-		App->camera->Position = (vehicle->GetVehiclePos() + vehicle->GetDirectionVec() * 12 + vec3(0, 6, 0));
+	else {
+
+
+	App->camera->LookAt(vehicle->GetVehiclePos());
+
+	App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() *CameraZoom + vec3(0,500, -20));
+
+	char title[100];
+	sprintf_s(title, "PRESS LETTER E TO START ");
+	App->window->SetTitle(title);
 
 	}
 
-	CurrentVelocity = vehicle->GetKmh();
 
 	return UPDATE_CONTINUE;
+
 }
 
 
