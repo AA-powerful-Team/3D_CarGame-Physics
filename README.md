@@ -5,7 +5,7 @@ Project for Physics II subject. The goal is to create a racing game using Bullet
 
 This project has been done by two students of CITM - UPC (Barcelona, Spain). 
 
-* [Github repository](https://github.com/AdrianFR99/3D_CarGame-Physics)  
+* [Github repository](https://github.com/AA-powerful-Team/3D_CarGame-Physics)  
 
 
  ## Installation instructions 
@@ -57,7 +57,7 @@ Win: make 3 laps in less than 240 seconds.
 _Adrian Font Romero Github account:_ 
 * [Github account](https://github.com/AdrianFR99) 
 
-_Andrés Ricardo Saladrigas Pérez Github account:_ 
+_AndrÃ©s Ricardo Saladrigas PÃ©rez Github account:_ 
 * [Github account](https://github.com/TheArzhel) 
 
 
