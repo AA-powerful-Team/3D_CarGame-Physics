@@ -24,6 +24,8 @@ public:
 	void MusicConditions();
 	void resetPlayerPos();
 	void resetOrientationPos();
+	void addVehicle();
+
 public:
 
 

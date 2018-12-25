@@ -55,17 +55,6 @@ bool ModulePhysics3D::Start()
 	world->setGravity(GRAVITY);
 	vehicle_raycaster = new btDefaultVehicleRaycaster(world);
 
-	//// Big plane as ground
-	//{
-	//	btCollisionShape* colShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
-
-	//	btDefaultMotionState* myMotionState = new btDefaultMotionState();
-	//	btRigidBody::btRigidBodyConstructionInfo rbInfo(0.0f, myMotionState, colShape);
-
-	//	btRigidBody* body = new btRigidBody(rbInfo);
-	//	world->addRigidBody(body);
-	//}
-
 	return true;
 }
 
@@ -150,7 +139,6 @@ bool ModulePhysics3D::CleanUp()
 {
 	LOG("Destroying 3D Physics simulation");
 
-	// Remove from the world all collision bodies
 	for(int i = world->getNumCollisionObjects() - 1; i >= 0; i--)
 	{
 		btCollisionObject* obj = world->getCollisionObjectArray()[i];
@@ -365,6 +353,15 @@ void ModulePhysics3D::AddConstraintHinge(PhysBody3D& bodyA, PhysBody3D& bodyB, c
 	hinge->setDbgDrawSize(2.0f);
 }
 
+void ModulePhysics3D::RemoveVehicle()
+{
+	for (p2List_item<PhysVehicle3D*>* item = vehicles.getFirst(); item; item = item->next)
+		delete item->data;
+
+	vehicles.clear();
+
+	delete vehicle_raycaster;
+}
 // =============================================
 void DebugDrawer::drawLine(const btVector3& from, const btVector3& to, const btVector3& color)
 {
@@ -400,3 +397,4 @@ int	 DebugDrawer::getDebugMode() const
 {
 	return mode;
 }
+

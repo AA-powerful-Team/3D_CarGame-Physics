@@ -1,7 +1,7 @@
 #include "PhysVehicle3D.h"
-#include "Primitive.h"
-#include "Bullet/include/btBulletDynamicsCommon.h"
 
+#include "Bullet/include/btBulletDynamicsCommon.h"
+#include "p2Defs.h"
 // ----------------------------------------------------------------------------
 VehicleInfo::~VehicleInfo()
 {
@@ -39,6 +39,7 @@ void PhysVehicle3D::Render()
 	}
 
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
+	Vehicle_parts.add(&chassis);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
@@ -49,6 +50,7 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[14] += offset.getZ();
 
 	Cube chassis2(info.chassis2_size.x, info.chassis2_size.y, info.chassis2_size.z);
+	Vehicle_parts.add(&chassis2);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis2.transform);
 	btQuaternion p = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset2(info.chassis2_offset.x, info.chassis2_offset.y, info.chassis2_offset.z);
@@ -59,6 +61,7 @@ void PhysVehicle3D::Render()
 	chassis2.transform.M[14] += offset2.getZ();
 
 	Cube chassis3(info.chassis3_size.x, info.chassis3_size.y, info.chassis3_size.z);
+	Vehicle_parts.add(&chassis3);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis3.transform);
 	btQuaternion r = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset3(info.chassis3_offset.x, info.chassis3_offset.y, info.chassis3_offset.z);
@@ -69,6 +72,7 @@ void PhysVehicle3D::Render()
 	chassis3.transform.M[14] += offset3.getZ();
 
 	Cube chassis4(info.chassis4_size.x, info.chassis4_size.y, info.chassis4_size.z);
+	Vehicle_parts.add(&chassis4);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis4.transform);
 	btQuaternion x = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset4(info.chassis4_offset.x, info.chassis4_offset.y, info.chassis4_offset.z);
@@ -80,6 +84,7 @@ void PhysVehicle3D::Render()
 
 
 	Cube chassis5(info.chassis5_size.x, info.chassis5_size.y, info.chassis5_size.z);
+	Vehicle_parts.add(&chassis5);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis5.transform);
 	btQuaternion z = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset5(info.chassis5_offset.x, info.chassis5_offset.y, info.chassis5_offset.z);
@@ -91,6 +96,7 @@ void PhysVehicle3D::Render()
 
 
 	Cube chassis6(info.chassis6_size.x, info.chassis6_size.y, info.chassis6_size.z);
+	Vehicle_parts.add(&chassis6);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis6.transform);
 	btQuaternion k = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset6(info.chassis6_offset.x, info.chassis6_offset.y, info.chassis6_offset.z);

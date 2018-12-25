@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Primitive.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -73,7 +74,7 @@ public:
 	void Skid(float force);
 	void Turn(float degrees);
 	float GetKmh() const;
-
+	void DestroyVehicle();
 
 	vec3 GetVehiclePos();
 	vec3 GetDirectionVec();
@@ -85,4 +86,5 @@ public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+	p2List<Cube*> Vehicle_parts;
 };

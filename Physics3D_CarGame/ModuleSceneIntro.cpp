@@ -58,6 +58,13 @@ bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
+	for (p2List_item<Cube*>* item = cubeList.getFirst(); item != nullptr; item = item->next) {
+		delete item->data;
+	}
+	cubeList.clear();
+
+	cubePhysList.clear();
+
 	return true;
 }
 
@@ -128,7 +135,8 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	if (restart)
 	{
-		
+		//App->physics->RemoveVehicle();
+		//App->player->addVehicle();
 		App->player->resetPlayerPos();
 
 		if (laps <= 4)
@@ -413,20 +421,9 @@ void ModuleSceneIntro::setObstacle()
 	createObstacle(415, 4, -230, 2, 5, 60, Red);
 	createObstacle(415, 4, -140, 10, 5, 10, Red);
 	createObstacle(425, 4, -100, 10, 5, 10, Red);
-	//createObstacle(420, 4, -10, 1, 1, 1, Blue); // obstaculo palanca sin torque
 	
 	createObstacle(360, 4, 55, 5, 5, 5, Red);
 	createObstacle(280, 4, 50, 5, 5, 5, Red);
-
-	
-	//(160, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	//createObstacle(60, 5, 50, 1, 1, 1, Blue);   // obstaculo palanca con torque
-	//createObstacle(-40, 5, 50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	//createObstacle(-140, 5, 50, 1, 1, 1, Blue); // obstaculo palanca con torque
-
-	//createObstacle(320, 5, -110, 1, 1, 1, Blue); // obstaculo palanca sin torque
-	//createObstacle(260, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
-	//createObstacle(160, 5, -50, 1, 1, 1, Blue);  // obstaculo palanca con torque
 
 	//boost
 	CreateSpeedBoost(420, 4, -350, 15, 1, 1, Yellow);
