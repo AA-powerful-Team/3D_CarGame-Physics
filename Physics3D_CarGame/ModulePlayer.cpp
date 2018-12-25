@@ -201,6 +201,9 @@ update_status ModulePlayer::Update(float dt)
 	else {
 
 
+	brake = BRAKE_POWER;
+	vehicle->Brake(brake);
+
 	App->camera->LookAt(vehicle->GetVehiclePos());
 
 	App->camera->Position = (vehicle->GetVehiclePos() - vehicle->GetDirectionVec() *CameraZoom + vec3(0,500, -20));

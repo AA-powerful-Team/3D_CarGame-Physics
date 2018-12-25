@@ -122,6 +122,7 @@ update_status ModuleSceneIntro::Update(float dt)
 			Lap3 = Laptime.ReadSec(); 
 			lap3 = (int)Lap3;
 			restart = true;
+			App->player->Menu = true;
 		}
 		
 		lock = true;
@@ -136,7 +137,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	if (restart)
 	{
-		App->player->Menu = true;
+		
 		App->player->resetPlayerPos();
 		App->player->vehicle->StopVelocities();
 		
