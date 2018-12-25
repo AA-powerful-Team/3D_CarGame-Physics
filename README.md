@@ -6,10 +6,10 @@ This project has been done by two students of CITM - UPC (Barcelona, Spain).
 
 ### Project Github
 	
-[Click Here](https://github.com/AdrianFR99/3D_CarGame-Physics) 
+[Click Here](https://github.com/AA-powerful-Team/3D_CarGame-Physics) 
      
-	https://github.com/AdrianFR99/3D_CarGame-Physics
-  
+	https://github.com/AA-powerful-Team/3D_CarGame-Physics
+	
 ### Installation
 
  ## Installation instructions 
@@ -18,9 +18,9 @@ Download the Zip file and extract it. Open the folder and double click on the ex
 
 _IMPORTANT: do not modify, change or add any folder or file, or else the game may not work correctly._ 
 
-Download [Here](https://github.com/AdrianFR99/3D_CarGame-Physics/releases) 
+Download [Here](https://github.com/AA-powerful-Team/3D_CarGame-Physics/releases) 
     
-       https://github.com/AdrianFR99/3D_CarGame-Physics/releases
+       https://github.com/AA-powerful-Team/3D_CarGame-Physics/releases
        
 ### Controls
 
@@ -76,7 +76,7 @@ Win: make 3 laps in less than 240 seconds.
 _Adrian Font Romero Github account:_ 
 * [Github account](https://github.com/AdrianFR99) 
 
-_Andrés Ricardo Saladrigas Pérez Github account:_ 
+_AndrÃ©s Ricardo Saladrigas PÃ©rez Github account:_ 
 * [Github account](https://github.com/TheArzhel) 
 
 
@@ -91,9 +91,9 @@ _Andrés Ricardo Saladrigas Pérez Github account:_
 ### License
 
 
-Licensed under the [MIT License](https://github.com/AtlasWorks/orBit/blob/master/LICENSE.txt)
+Licensed under the [MIT License](https://github.com/AA-powerful-Team/3D_CarGame-Physics/blob/master/LICENSE.txt)
 
-
+	https://github.com/AA-powerful-Team/3D_CarGame-Physics/blob/master/LICENSE.txt
 
 
 
