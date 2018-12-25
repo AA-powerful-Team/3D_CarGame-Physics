@@ -74,8 +74,7 @@ public:
 	void Skid(float force);
 	void Turn(float degrees);
 	float GetKmh() const;
-	void DestroyVehicle();
-
+	void StopVelocities();
 	vec3 GetVehiclePos();
 	vec3 GetDirectionVec();
 

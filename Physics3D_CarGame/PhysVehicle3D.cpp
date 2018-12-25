@@ -233,3 +233,10 @@ bool PhysVehicle3D::overturned() {
 
 	return ret;
 }
+
+
+void PhysVehicle3D::StopVelocities()
+{
+	vehicle->getRigidBody()->setLinearVelocity(btVector3(0, 0, 0));
+	vehicle->getRigidBody()->setAngularVelocity(btVector3(0, 0, 0));
+}
