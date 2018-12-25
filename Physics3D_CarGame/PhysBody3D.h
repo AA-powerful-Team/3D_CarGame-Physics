@@ -29,16 +29,19 @@ public:
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
+	// sesor utility
 	void AsSensor(bool is_sensor)const;
 
+	// getter
+	btRigidBody* PointerGet();
 
 private:
 	btRigidBody* body = nullptr;
 
 public:
 
-	bool mutable is_sensor;
-	TypeObject type;
+	bool mutable is_sensor=false;
+	TypeObject type= TypeObject::NONE;
 	p2List<Module*> collision_listeners;
 };
 

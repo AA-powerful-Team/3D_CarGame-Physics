@@ -15,8 +15,11 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
-
-
+struct compact_info 
+{
+	Cube* cubeinfo;
+	PhysBody3D* Pcubeinfo;
+};
 
 
 class ModuleSceneIntro : public Module
@@ -41,11 +44,13 @@ public:
 	void CreateWorldBoundaries(); 
 	void createBuilding(int posx, int posy, int posz, int sizex, int sizey, int sizez);
 	void CreateSpeedBoost(int posx, int posy, int posz, int sizex, int sizey, int sizez, Color color);
-	void CreateTurbine(int posTorqx, int posTorqy, int posTorqz, int sizeShowx, int sizeShowy, int sizeShowz, Color colorTorq);
+	void CreateTurbine();
 
 	PhysBody3D* CreateCubePhysbody(Cube* cube, Module* Callback, TypeObject type= TypeObject::NONE, bool is_sensor=false,float mass=0.00f);
 	Cube* cubeCreation(vec3 position, vec3 size, Color rgb, float angle=0, vec3 pivot=0);
 
+	compact_info SpinMachine(int posx, int posy, int posz, int sizex, int sizey, int sizez, float angle,float mass= 10000.0f);
+	compact_info TorqueMove(int posx, int posy, int posz, float angle,float mass= 10000.0f);
 
 	void createMap();
 	void setObstacle();
@@ -98,4 +103,30 @@ public:
 	bool restart = false;
 	bool passLine = false;
 	bool lock = false;
+
+	//spining fans
+	
+	compact_info fan1;
+	compact_info mover1;
+
+	compact_info fan2;
+	compact_info mover2;
+
+	compact_info fan3;
+	compact_info mover3;
+
+	compact_info fan4;
+	compact_info mover4;
+
+	compact_info fan5;
+	compact_info mover5;
+
+	compact_info fan6;
+	compact_info mover6;
+
+	compact_info fan7;
+	compact_info mover7;
+
+	compact_info fan8;
+	compact_info mover8;
 };

@@ -79,7 +79,7 @@ public:
 	vec3 GetDirectionVec();
 
 	bool overturned();
-	TypeObject type;
+	//TypeObject type;
 
 public:
 

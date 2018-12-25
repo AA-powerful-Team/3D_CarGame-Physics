@@ -65,3 +65,8 @@ void  PhysBody3D::AsSensor(bool is_sensor)const {
 
 
 }
+
+btRigidBody* PhysBody3D::PointerGet()
+{
+	return body;
+}
