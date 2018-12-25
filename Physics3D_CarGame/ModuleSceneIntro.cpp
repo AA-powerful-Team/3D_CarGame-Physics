@@ -201,7 +201,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		App->player->Boost=true;
 
 	}
-	else if (body1->type == TypeObject::OUT_OF_BOUNDS && body1->type == TypeObject::VEHICLE)
+	else if (body1->type == TypeObject::OUT_OF_BOUNDS && body2->type != TypeObject::NONE)
 	{
 		restart = true;
 	}
@@ -473,9 +473,8 @@ void ModuleSceneIntro::CreateSpeedBoost(int posx, int posy, int posz, int sizex,
 void ModuleSceneIntro::CreateTurbine() 
 {
 
-
 	//without
-	fan1 = SpinMachine(420, 4, -10, 10, 1, 1, 90, 100);
+	fan1 = SpinMachine(420, 4, -10, 1, 1, 10, 90, 100);
 	mover1 = TorqueMove(420, 4, -10, 90, 100);
 	App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
@@ -496,7 +495,7 @@ void ModuleSceneIntro::CreateTurbine()
 	mover5 = TorqueMove(-140, 4, 50, 90);
 	App->physics->AddConstraintHinge(*mover5.Pcubeinfo, *fan5.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan6 = SpinMachine(320, 4, -110, 10, 1, 1, 90);
+	fan6 = SpinMachine(320, 4, -110, 1, 1, 10, 90);
 	mover6 = TorqueMove(320, 4, -110, 90);
 	App->physics->AddConstraintHinge(*mover6.Pcubeinfo, *fan6.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with

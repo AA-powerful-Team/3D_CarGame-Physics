@@ -123,8 +123,8 @@ bool ModulePlayer::Start()
 	car.wheels[3].SkidWheel = true;
 
 	vehicle = App->physics->AddVehicle(car);
-	//vehicle->SetPos(100, 2, -165); //start point
-	vehicle->SetPos(126, 5, 50);
+	vehicle->SetPos(100, 2, -165); //start point
+	//vehicle->SetPos(126, 5, 50);
 	vehicle->GetTransform(&matrix);
 	matrix.rotate(180, vec3(0, 1, 0));
 	vehicle->SetTransform(&matrix);
@@ -236,7 +236,8 @@ update_status ModulePlayer::Update(float dt)
 
 	vehicle->Render();
 
-	char title[80];
+	
+	char title[150];
 	sprintf_s(title, "%.1f Km/h  Lap: %i /3  Lap1:%i   Lap2:%i   Lap3:%i  TitalTime:%i ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->lap1, App->scene_intro->lap2, App->scene_intro->lap3, App->scene_intro->total_Time);
 	App->window->SetTitle(title);
 
