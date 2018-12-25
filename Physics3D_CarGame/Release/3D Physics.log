@@ -1,0 +1,86 @@
+﻿  Application.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Color.cpp
+  glmath.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(12): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(53): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(72): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(87): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(103): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(600): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(618): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(758): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\glmath.cpp(778): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Light.cpp
+  log.cpp
+  Main.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModuleAudio.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModuleCamera3D.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModuleInput.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModulePhysics3D.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulephysics3d.cpp(348): warning C4305: 'argument': truncation from 'unsigned int' to 'btScalar'
+  ModulePlayer.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.cpp(331): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.cpp(337): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.cpp(342): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.cpp(343): warning C4305: 'argument': truncation from 'double' to 'float'
+  ModuleRenderer3D.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModuleSceneIntro.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(222): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(231): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(237): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(286): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(325): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(331): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(360): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(409): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(446): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(449): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(449): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(452): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(452): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(460): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(507): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.cpp(524): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ModuleWindow.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\moduleplayer.h(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\modulesceneintro.h(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PhysBody3D.cpp
+  PhysVehicle3D.cpp
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\physvehicle3d.cpp(140): warning C4244: 'argument': conversion from 'double' to 'btScalar', possible loss of data
+c:\users\andres\documents\github\3d_cargame-physics\physics3d_cargame\physvehicle3d.cpp(142): warning C4244: 'argument': conversion from 'double' to 'btScalar', possible loss of data
+  Primitive.cpp
+  Timer.cpp
+  Generating code
+  All 487 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  3D Physics.vcxproj -> C:\Users\Andres\Documents\GitHub\3D_CarGame-Physics\Physics3D_CarGame\Release\PrimitiveRacing.exe

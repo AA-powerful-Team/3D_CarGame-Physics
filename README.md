@@ -1,12 +1,16 @@
-
 # PrimitiveRacing3D
 
 Project for Physics II subject. The goal is to create a racing game using Bullet 3D library
 
 This project has been done by two students of CITM - UPC (Barcelona, Spain). 
 
-* [Github repository](https://github.com/AdrianFR99/3D_CarGame-Physics)  
-
+### Project Github
+	
+[Click Here](https://github.com/AdrianFR99/3D_CarGame-Physics) 
+     
+	https://github.com/AdrianFR99/3D_CarGame-Physics
+  
+### Installation
 
  ## Installation instructions 
 
@@ -14,7 +18,15 @@ Download the Zip file and extract it. Open the folder and double click on the ex
 
 _IMPORTANT: do not modify, change or add any folder or file, or else the game may not work correctly._ 
 
-## Controls Player controls: 
+Download [Here](https://github.com/AdrianFR99/3D_CarGame-Physics/releases) 
+    
+       https://github.com/AdrianFR99/3D_CarGame-Physics/releases
+       
+### Controls
+
+
+```markdown
+- E: Start game
 
 Arrows:
 - UP: Accelerate
@@ -32,6 +44,7 @@ General/developer controls:
 - DEBUG MODE & DRAW OBJECTS: F1 key 
 - CLICK AND DRAG: Move camera
 
+ ```
 
 ## How to play 
 
@@ -41,6 +54,14 @@ Lose: get out of the road or make 3 laps with a time greater then 240 sec.
 
 Win: make 3 laps in less than 240 seconds.
 
+
+## Game Video
+
+<html>
+<body>
+
+</body>
+</html>
 
 # Objects 
 
@@ -65,3 +86,15 @@ _Andrés Ricardo Saladrigas Pérez Github account:_
 * Physics: Bullet3D 
 * Code repository: GitHub 
 * Others: Adobe Photoshop and Audacity 
+
+
+### License
+
+
+Licensed under the [MIT License](https://github.com/AtlasWorks/orBit/blob/master/LICENSE.txt)
+
+
+
+
+
+
