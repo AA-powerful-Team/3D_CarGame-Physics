@@ -16,6 +16,8 @@ _IMPORTANT: do not modify, change or add any folder or file, or else the game ma
 
 ## Controls Player controls: 
 
+- E: to start the game
+
 Arrows:
 - UP: Accelerate
 - RIGHT: Turn Right 
