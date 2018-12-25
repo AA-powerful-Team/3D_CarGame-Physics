@@ -14,6 +14,7 @@ enum class TypeObject {
 	TURBINE,
 	OUT_OF_BOUNDS,
 	START,
+	JOINT,
 	NONE
 
 };
