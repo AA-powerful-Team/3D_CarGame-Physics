@@ -31,6 +31,8 @@ public:
 
 	bool constantVelocity;
 	bool Boost = false;
+	bool Menu = true;
+	bool playMusic = true;
 
 	PhysVehicle3D* vehicle;
 	float turn;
