@@ -70,23 +70,37 @@ update_status ModulePlayer::Update(float dt)
 
 	if (Menu == false) {
 
+
+
+		if (Boost == true) {
+
+			vehicle->ApplyEngineForce(BOOST_POWER);
+			App->audio->PlayFx(BoostSound);
+			
+			if(BoostTime.Read()>2000)
+			Boost = false;
+
+		}
+
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN && vehicle->GetKmh() < 5) {
 
 
 			App->audio->PlayFx(RevEngineSound);
 
 		}
+		if (Boost == false) {
 
-		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE)
-		{
+			if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_IDLE)
+			{
 
-			if (vehicle->GetKmh() > 0) {
-				acceleration = -MAX_ACCELERATION * 0.25;
+				if (vehicle->GetKmh() > 0) {
+
+					acceleration = -MAX_ACCELERATION * 0.25;
+				}
+
+
 			}
-
-
 		}
-
 		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		{
 			acceleration = MAX_ACCELERATION;
@@ -129,16 +143,7 @@ update_status ModulePlayer::Update(float dt)
 
 		MusicConditions();
 
-		if (Boost == true) {
-
-			vehicle->ApplyEngineForce(BOOST_POWER);
-			acceleration += BOOST_POWER;
-			App->audio->PlayFx(BoostSound);
-
-			Boost = false;
-
-		}
-
+		
 
 		vehicle->ApplyEngineForce(acceleration);
 		vehicle->Turn(turn);
@@ -149,7 +154,7 @@ update_status ModulePlayer::Update(float dt)
 
 
 		char title[300];
-		sprintf_s(title, "%.1f Km/h Lap: %i /3 Lap1:%i Lap2:%i Lap3:%i TitalTime:%i ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->lap1, App->scene_intro->lap2, App->scene_intro->lap3, App->scene_intro->total_Time);
+		sprintf_s(title, "%.1f Km/h Lap: %i /3 TotalTime:%i ", vehicle->GetKmh(), App->scene_intro->laps, App->scene_intro->total_Time);
 		App->window->SetTitle(title);
 
 

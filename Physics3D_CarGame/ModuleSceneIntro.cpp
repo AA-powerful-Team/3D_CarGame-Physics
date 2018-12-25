@@ -198,6 +198,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 	if (body1->type==TypeObject::BOOST_SPEED) {
 
 		App->player->Boost=true;
+		App->player->BoostTime.Start();
 
 	}
 	else if (body1->type == TypeObject::OUT_OF_BOUNDS && body2->type != TypeObject::NONE)
