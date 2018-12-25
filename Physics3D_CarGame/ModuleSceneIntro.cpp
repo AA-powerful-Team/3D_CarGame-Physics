@@ -84,23 +84,11 @@ update_status ModuleSceneIntro::Update(float dt)
 	}
 
 
-	//if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
-	//{
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
+	{
 
-	//	if (laps == 1)
-	//		Lap1 = Laptime.ReadSec();
-	//	else if (laps == 2)
-	//		Lap2 = Laptime.ReadSec();
-	//	else if (laps == 3)
-	//		Lap3 = Laptime.ReadSec();
-	//	else if (laps == 4)
-	//		restart = true;
-	//	/*else if (laps==0)
-	//	laps = 1;*/
-
-	//	laps++;
-	//	Laptime.Start();
-	//}
+		restart = true;
+	}
 	if (lock == true && BlockT.ReadSec() >= 30)
 	{
 		lock = false;
@@ -146,7 +134,8 @@ update_status ModuleSceneIntro::Update(float dt)
 		if (laps <= 4)
 		{
 			//win condition stop movement. postion camera active and inactive bool
-
+			//bool active=false;
+			//cange camera
 		}
 
 		laps = 0;
@@ -486,32 +475,32 @@ void ModuleSceneIntro::CreateTurbine()
 	App->physics->AddConstraintHinge(*mover1.Pcubeinfo, *fan1.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
 	//with
-	fan2 = SpinMachine(160, 4, 50, 10, 1, 1, 90);
-	mover2 = TorqueMove(160, 4, 50, 90);
+	fan2 = SpinMachine(160, 6, 50, 10, 1, 1, 90);
+	mover2 = TorqueMove(160, 6, 50, 90);
 	App->physics->AddConstraintHinge(*mover2.Pcubeinfo, *fan2.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan3 = SpinMachine(60, 4, 50, 10, 1, 1, 90);
-	mover3 = TorqueMove(60, 4, 50, 90);
+	fan3 = SpinMachine(60, 6, 50, 10, 1, 1, 90);
+	mover3 = TorqueMove(60, 6, 50, 90);
 	App->physics->AddConstraintHinge(*mover3.Pcubeinfo, *fan3.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan4 = SpinMachine(-40, 4, 50, 10, 1, 1, 90);
-	mover4 = TorqueMove(-40, 4, 50, 90);
+	fan4 = SpinMachine(-40, 6, 50, 10, 1, 1, 90);
+	mover4 = TorqueMove(-40, 6, 50, 90);
 	App->physics->AddConstraintHinge(*mover4.Pcubeinfo, *fan4.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan5 = SpinMachine(-140, 4, 50, 10, 1, 1, 90);
-	mover5 = TorqueMove(-140, 4, 50, 90);
+	fan5 = SpinMachine(-140, 6, 50, 10, 1, 1, 90);
+	mover5 = TorqueMove(-140, 6, 50, 90);
 	App->physics->AddConstraintHinge(*mover5.Pcubeinfo, *fan5.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan6 = SpinMachine(320, 4, -110, 1, 1, 10, 90);
-	mover6 = TorqueMove(320, 4, -110, 90);
+	fan6 = SpinMachine(320, 6, -110, 1, 1, 10, 90);
+	mover6 = TorqueMove(320, 6, -110, 90);
 	App->physics->AddConstraintHinge(*mover6.Pcubeinfo, *fan6.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//with
-	fan7 = SpinMachine(260, 4, -50, 10, 1, 1, 90);
-	mover7 = TorqueMove(260, 4, -50, 90);
+	fan7 = SpinMachine(260, 6, -50, 10, 1, 1, 90);
+	mover7 = TorqueMove(260, 6, -50, 90);
 	App->physics->AddConstraintHinge(*mover7.Pcubeinfo, *fan7.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 	//without
-	fan8 = SpinMachine(160, 4, -50, 10, 1, 1, 90);
-	mover8 = TorqueMove(160, 4, -50, 90, 100);
+	fan8 = SpinMachine(160, 6, -50, 10, 1, 1, 90);
+	mover8 = TorqueMove(160, 6, -50, 90, 100);
 	App->physics->AddConstraintHinge(*mover8.Pcubeinfo, *fan8.Pcubeinfo, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, false);
 
 
