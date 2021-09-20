@@ -81,6 +81,50 @@ same amount.
 
 Score and balls left can be seen on window title.
 
+## Game Video
+
+<html>
+<body>
+	
+<iframe width="1031" height="580" src="https://www.youtube.com/embed/y39BIvoNypc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</body>
+</html>
+
+
+## Game Differences 
+
+* Ball doesn't disappear when entering the 2x and 4x ramps or add falling velocity. 
+* Kickers when the ball tries to fall in the sideways rails. 
+* No instructions shown. 
+* Score differs from the original. 
+* Lights do not disappear with time, just when ball falls or the combo is performed. 
+
+## Team members 
+
+_Adrian Font Romero Github account:_ 
+* [Github account](https://github.com/AdrianFR99) 
+
+_Andrés Ricardo Saladrigas Pérez Github account:_ 
+* [Github account](https://github.com/TheArzhel) 
+
+
+## Tools used 
+* Microsoft Visual Studio 2017 
+* Language: C++ * Graphics and audio: SDL
+2.0.4 
+* Physics: Box2D 
+* Code repository: GitHub 
+* Others: Adobe Photoshop and Audacity 
+
+
+### Disclaimer
+
+All sprites and sounds are property of the games creator
+
+
+---
+
 
 # PrimitiveRacing3D
 
