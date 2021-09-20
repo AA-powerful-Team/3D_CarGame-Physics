@@ -83,14 +83,6 @@ Score and balls left can be seen on window title.
 
 ## Game Video
 
-<html>
-<body>
-	
-<iframe width="1031" height="580" src="https://www.youtube.com/embed/y39BIvoNypc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</body>
-</html>
-
 
 ## Game Differences 
 
@@ -121,6 +113,9 @@ _Andrés Ricardo Saladrigas Pérez Github account:_
 ### Disclaimer
 
 All sprites and sounds are property of the games creator
+
+
+---
 
 
 # PrimitiveRacing3D
