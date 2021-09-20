@@ -18,6 +18,38 @@ This project has been done by two students of CITM - UPC (Barcelona, Spain).
 
          https://github.com/AA-powerful-Team/Pinball_physics
 
+## About the game 
+
+The original pinball game can be found [here] (http://www.freewebarcade.com/game/rollin-x-pinball/index.php?act=Arcade&do=newscore).
+
+         http://www.freewebarcade.com/game/rollin-x-pinball/index.php?act=Arcade&do=newscore
+
+ ## Installation instructions 
+
+Download the Zip file and extract it. Open the folder and double click on the executable (.exe) 
+
+_IMPORTANT: do not modify, change or add any folder or file, or else the game may not work correctly._ 
+
+## Controls Player controls: 
+
+```markdown
+
+- RIGHT FLIPPER: Right arrow key 
+- LEFT FLIPPER: Right left key 
+- LAUNCH BALL: Down arrow key (hold to charge kicker)
+
+General/developer controls: 
+
+- EXIT GAME: ESC key or click close button in window 
+- DEBUG MODE & DRAW OBJECTS: F1 key 
+- CREATE BALL: 1 key 
+- MOVE BALL: click and drag the ball around while on debug mode
+- A: restart the game 
+
+
+ ```
+
+**CAUTION: the game is not thought to be played in debug mode. Some bugs may appear while on debug mode. 
 
 
 # PrimitiveRacing3D
