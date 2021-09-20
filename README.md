@@ -8,6 +8,17 @@ Both games created only with C and C++ and the implmented libraries.
 
 These projects have been done by two students of CITM - UPC (Barcelona, Spain).
 
+# ROLLING X PINBALL
+
+Project for Physics II subject. The goal is to recreate a pinball game with BoxD library. 
+
+This project has been done by two students of CITM - UPC (Barcelona, Spain). 
+
+* [Github repository](https://github.com/AA-powerful-Team/Pinball_physics)
+
+         https://github.com/AA-powerful-Team/Pinball_physics
+
+
 
 # PrimitiveRacing3D
 
