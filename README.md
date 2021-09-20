@@ -123,9 +123,6 @@ _Andrés Ricardo Saladrigas Pérez Github account:_
 All sprites and sounds are property of the games creator
 
 
----
-
-
 # PrimitiveRacing3D
 
 Project for Physics II subject. The goal is to create a racing game using Bullet 3D library
