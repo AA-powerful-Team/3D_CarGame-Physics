@@ -51,6 +51,36 @@ General/developer controls:
 
 **CAUTION: the game is not thought to be played in debug mode. Some bugs may appear while on debug mode. 
 
+## How to play 
+
+The goal of the game is score as many points as you can before losing four balls. 
+
+You may score by: 
+* Impacting one of the two circle bouncers. 
+* Impacting one of the two triangular bouncers. 
+* Impacting the blue bouncer after the tunnel. 
+* Going in the 2x or 4x entrance, multiplying your score by the  
+same amount. 
+* Entering the Ball lock ramp. 
+
+
+# Combos 
+
+```markdown
+
+* Going through large tunnel on the left part of the screen, activating all lights. 
+* Touching the 3 sensor right of the circle bouncers. 
+* Touching the 3 above sensors that lead to the bouncers. 
+* Touching the 3 above sensors that lead to the bouncers, plus the uppermost sensor. 
+* Touching the upper sensor and the one in the middle of the stage, connecting the upper and lower part. 
+* Touching the 5 small sensors in the lower part of the board. 
+
+ ```
+
+**CAUTION: losing the ball and touching the sideways sensors will rest you points.
+
+Score and balls left can be seen on window title.
+
 
 # PrimitiveRacing3D
 
