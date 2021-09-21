@@ -6,7 +6,16 @@ Projects created for Physics II subject.
 
 Both games created only with C and C++ and the implmented libraries.
 
+## Team members 
+
 These projects have been done by two students of CITM - UPC (Barcelona, Spain).
+
+_Adrian Font Romero Github account:_ 
+* [Github account](https://github.com/AdrianFR99) 
+
+_Andres Ricardo Saladrigas Perez Github account:_ 
+* [Github account](https://github.com/TheArzhel) 
+
 
 # ROLLING X PINBALL
 
@@ -20,11 +29,11 @@ This project has been done by two students of CITM - UPC (Barcelona, Spain).
 
 ## About the game 
 
-The original pinball game can be found [here] (http://www.freewebarcade.com/game/rollin-x-pinball/index.php?act=Arcade&do=newscore).
+The original pinball game can be found [here] (http://www.freewebarcade.com/game/rollin-x-pinball/index.php?act=Arcade&do=newscore)
 
          http://www.freewebarcade.com/game/rollin-x-pinball/index.php?act=Arcade&do=newscore
 
- ## Installation instructions 
+## Installation instructions 
 
 Download the Zip file and extract it. Open the folder and double click on the executable (.exe) 
 
@@ -99,14 +108,6 @@ Score and balls left can be seen on window title.
 * No instructions shown. 
 * Score differs from the original. 
 * Lights do not disappear with time, just when ball falls or the combo is performed. 
-
-## Team members 
-
-_Adrian Font Romero Github account:_ 
-* [Github account](https://github.com/AdrianFR99) 
-
-_Andres Ricardo Saladrigas Perez Github account:_ 
-* [Github account](https://github.com/TheArzhel) 
 
 
 ## Tools used 
@@ -198,15 +199,6 @@ Win: make 3 laps in less than 240 seconds.
 * Joints wiithout movement.
 * Start line sensor
 * Boost sensor
-
-## Team members 
-
-_Adrian Font Romero Github account:_ 
-* [Github account](https://github.com/AdrianFR99) 
-
-_Andrés Ricardo Saladrigas Perez Github account:_ 
-* [Github account](https://github.com/TheArzhel) 
-
 
 ## Tools used 
 * Microsoft Visual Studio 2017 
